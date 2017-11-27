@@ -15,21 +15,20 @@ import ui
 import data_manager
 # common module
 import common
+"""
+Starts this module and displays its menu.
+User can access default special features from here.
+User can go back to main menu from here.
+
+Returns:
+    None
+"""
 
 
 def start_module():
-    """
-    Starts this module and displays its menu.
-    User can access default special features from here.
-    User can go back to main menu from here.
+    inventory_options = ["Display table", "Add", "Remove", "Update"]
+    ui.print_menu("Inventory menu", inventory_options, "Main menu")
 
-    Returns:
-        None
-    """
-
-    # you code
-
-    pass
 
 
 def show_table(table):
