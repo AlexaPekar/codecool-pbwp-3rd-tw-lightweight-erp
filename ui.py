@@ -61,10 +61,10 @@ def print_menu(title, list_options, exit_message):
     Returns:
         This function doesn't return anything it only prints to console.
     """
-
-    # your code
-
-    pass
+    print(title)
+    for i in range (1, len(list_options)):
+        print("    (" + str(i) + ") " + list_options[i])
+    print("    (0) " + exit_message)
 
 
 def get_inputs(list_labels, title):
