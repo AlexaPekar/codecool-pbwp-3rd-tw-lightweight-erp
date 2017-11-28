@@ -26,10 +26,23 @@ Returns:
 
 
 def start_module():
+    datas = data_manager.get_table_from_file("inventory/inventory.csv")
     inventory_options = ["Display table", "Add", "Remove", "Update"]
     ui.print_menu("Inventory menu", inventory_options, "Main menu")
-    ui.get_inputs(["Please choose an option: "],"")
-
+    inputs = ui.get_inputs(["Please, choose an option: "], "")
+    option = inputs[0]
+    if option == "1":
+        show_table(datas)
+    elif option == "2":
+        add(datas)
+    elif option == "3":
+        remove(table, id_)
+    elif option == "4":
+        update(table, id_)
+    elif option == "0":
+        handle_menu()
+    else:
+        raise KeyError("There is no such option.")
 
 
 def show_table(table):
@@ -43,11 +56,10 @@ def show_table(table):
         None
     """
 
-    # your code
+    title_list = ["ID", "Name", "Manufacturer", "Purchase date", "Durability"]
+    ui.print_table(table, title_list)
 
-    pass
-
-
+    
 def add(table):
     """
     Asks user for input and adds it into the table.
@@ -58,9 +70,13 @@ def add(table):
     Returns:
         Table with a new record
     """
-
-    # your code
-
+    title_list = ["ID", "Name", "Manufacturer", "Purchase date", "Durability"]
+    add_in = []
+    add_in.append(common.generate_random(table))
+    for i in range(0, len(title_list)):
+        add_in.append(input("Add details please: "))
+    table.append(add_in)
+    data_manager.write_table_to_file("inventory/inventory.csv", table)
     return table
 
 

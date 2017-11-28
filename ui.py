@@ -18,10 +18,10 @@ def print_table(table, title_list):
     Returns:
         This function doesn't return anything it only prints to console.
     """
-
-    # your goes code
-
-    pass
+    seperate = " "
+    print(seperate.join(title_list))
+    for row in table:
+        print(seperate.join(row))
 
 
 def print_result(result, label):
@@ -61,6 +61,7 @@ def print_menu(title, list_options, exit_message):
     Returns:
         This function doesn't return anything it only prints to console.
     """
+    
     print(title)
     for i in range(0, len(list_options)):
         print("    (" + str(i+1) + ") " + list_options[i])
