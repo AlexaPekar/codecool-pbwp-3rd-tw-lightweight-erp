@@ -28,6 +28,22 @@ Returns:
 def start_module():
     inventory_options = ["Display table", "Add", "Remove", "Update"]
     ui.print_menu("Inventory menu", inventory_options, "Main menu")
+    inputs = ui.get_inputs(["Please, choose an option: "], "")
+    option = inputs[0]
+    if option == "1":
+        datas = data_manager.get_table_from_file("inventory/inventory.csv")
+        show_table(datas)
+    elif option == "2":
+        add(table)
+    elif option == "3":
+        remove(table, id_)
+    elif option == "4":
+        update(table, id_)
+    elif option == "0":
+        sys.exit(0)
+    else:
+        raise KeyError("There is no such option.")
+
 
 
 
@@ -42,10 +58,10 @@ def show_table(table):
         None
     """
 
-    # your code
+    title_list = ["ID", "Name", "Manufacturer", "Purchase date", "Durability"]
+    ui.print_table(table, title_list)
 
-    pass
-
+    
 
 def add(table):
     """
