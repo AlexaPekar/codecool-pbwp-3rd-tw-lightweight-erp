@@ -28,6 +28,7 @@ Returns:
 def start_module():
     inventory_options = ["Display table", "Add", "Remove", "Update"]
     ui.print_menu("Inventory menu", inventory_options, "Main menu")
+    ui.get_inputs(["Please choose an option: "],"")
 
 
 
