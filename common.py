@@ -2,6 +2,7 @@
 
 import random
 import string
+import ui
 
 
 # generate and return a unique and random string
@@ -11,17 +12,8 @@ import string
 #
 # @table: list of lists
 # @generated: string - randomly generated string (unique in the @table)
+
 def generate_random(table):
-    """
-    Generates random and unique string. Used for id/key generation.
-
-    Args:
-        table: list containing keys. Generated string should be different then all of them
-
-    Returns:
-        Random and unique string
-    """
-
     generated = ''
     a = ''.join(random.choice(string.ascii_uppercase) for i in range(2))
     b = ''.join(random.choice(string.ascii_lowercase) for i in range(2))

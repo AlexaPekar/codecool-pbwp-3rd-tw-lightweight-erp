@@ -15,15 +15,6 @@ import ui
 import data_manager
 # common module
 import common
-"""
-Starts this module and displays its menu.
-User can access default special features from here.
-User can go back to main menu from here.
-
-Returns:
-    None
-"""
-
 
 def start_module():
     while True:
@@ -49,30 +40,11 @@ def start_module():
 
 
 def show_table(table):
-    """
-    Display a table
-
-    Args:
-        table: list of lists to be displayed.
-
-    Returns:
-        None
-    """
-
     title_list = ["ID", "Name", "Manufacturer", "Purchase date", "Durability"]
     ui.print_table(table, title_list)
 
     
 def add(table):
-    """
-    Asks user for input and adds it into the table.
-
-    Args:
-        table: table to add new record to
-
-    Returns:
-        Table with a new record
-    """
     title_list = ["Name: ", "Manufacturer: ", "Purchase date: ", "Durability: "]
     random_id = common.generate_random(table)
     inputs = ui.get_inputs(title_list, "Please add the items")
@@ -83,38 +55,19 @@ def add(table):
 
 
 def remove(table, id_):
-    """
-    Remove a record with a given id from the table.
-
-    Args:
-        table: table to remove a record from
-        id_ (str): id of a record to be removed
-
-    Returns:
-        Table without specified record.
-    """
-
-    for i in range(len(table)):
-        if table[i][0] == id_[0]:
-            table.pop(i)
-            break
-    data_manager.write_table_to_file("inventory/inventory.csv", table)
-
+    ids = common.id_list(table)
+    if id_[0] in ids:
+        for i in range(len(table)):
+            if table[i][0] == id_[0]:
+                table.pop(i)
+                break
+        data_manager.write_table_to_file("inventory/inventory.csv", table)
+    else:
+        ui.print_error_message("There is no such option.")
     return table
 
 
 def update(table, id_):
-    """
-    Updates specified record in the table. Ask users for new data.
-
-    Args:
-        table: list in which record should be updated
-        id_ (str): id of a record to update
-
-    Returns:
-        table with updated record
-   
-"""
     title_list = ["Name: ", "Manufacturer: ", "Purchase date: ", "Durability: "]
     new_items = []
     ids = common.id_list(table)
@@ -129,7 +82,6 @@ def update(table, id_):
         data_manager.write_table_to_file("inventory/inventory.csv", table)
     else:
         ui.print_error_message("There is no such option.")
-
     return table
 
 
