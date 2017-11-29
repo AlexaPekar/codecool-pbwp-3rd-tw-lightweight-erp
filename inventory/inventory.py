@@ -26,25 +26,26 @@ Returns:
 
 
 def start_module():
-    datas = data_manager.get_table_from_file("inventory/inventory.csv")
-    inventory_options = ["Display table", "Add", "Remove", "Update"]
-    ui.print_menu("Inventory menu", inventory_options, "Main menu")
-    inputs = ui.get_inputs(["Please, choose an option: "], "")
-    option = inputs[0]
-    if option == "1":
-        show_table(datas)
-    elif option == "2":
-        add(datas)
-    elif option == "3":
-        given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
-        remove(datas, given_id)
-    elif option == "4":
-        update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
-        update(datas, update_id)
-    elif option == "0":
-        handle_menu()
-    else:
-        raise KeyError("There is no such option.")
+    while True:
+        datas = data_manager.get_table_from_file("inventory/inventory.csv")
+        options = ["Display table", "Add", "Remove", "Update"]
+        ui.print_menu("\nInventory menu", options, "Main menu")
+        inputs = ui.get_inputs(["Please, choose an option: "], "")
+        option = inputs[0]
+        if option == "1":
+            show_table(datas)
+        elif option == "2":
+            add(datas)
+        elif option == "3":
+            given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
+            remove(datas, given_id)
+        elif option == "4":
+            update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
+            update(datas, update_id)
+        elif option == "0":
+            break
+        else:
+            ui.print_error_message("There is no such option.")
 
 
 def show_table(table):
@@ -114,10 +115,10 @@ def update(table, id_):
         table with updated record
    
 """
+    title_list = ["Name: ", "Manufacturer: ", "Purchase date: ", "Durability: "]
     new_items = []
     ids = common.id_list(table)
     if id_[0] in ids:
-        title_list = ["Name: ", "Manufacturer: ", "Purchase date: ", "Durability: "]
         new_items.append(id_[0])
         new_elements = ui.get_inputs(title_list, "Please add the items")
         for item in new_elements:
@@ -127,7 +128,7 @@ def update(table, id_):
                 table[i] = new_items
         data_manager.write_table_to_file("inventory/inventory.csv", table)
     else:
-        raise ValueError("This ID is not in the file!")
+        ui.print_error_message("There is no such option.")
 
     return table
 
