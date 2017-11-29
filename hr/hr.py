@@ -46,7 +46,7 @@ def show_table(table):
 
 def add(table):
 
-    title_list = ["Name", "Birth date"]
+    title_list = ["Name: ", "Birth date: "]
     random_id = common.generate_random(table)
     inputs = ui.get_inputs(title_list, "Please add the items")
     inputs.insert(0, random_id)
@@ -71,7 +71,7 @@ def remove(table, id_):
 
 def update(table, id_):
 
-    title_list = ["Name", "Birth date"]
+    title_list = ["Name: ", "Birth date: "]
     new_items = []
     ids = common.id_list(table)
     if id_[0] in ids:
