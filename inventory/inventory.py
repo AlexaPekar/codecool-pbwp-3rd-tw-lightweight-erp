@@ -39,7 +39,8 @@ def start_module():
         given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
         remove(datas, given_id)
     elif option == "4":
-        update(table, id_)
+        update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
+        update(datas, update_id)
     elif option == "0":
         handle_menu()
     else:
@@ -73,7 +74,7 @@ def add(table):
     """
     title_list = ["Name: ", "Manufacturer: ", "Purchase date: ", "Durability: "]
     random_id = common.generate_random(table)
-    inputs = ui.get_inputs(title_list, "Please add the items: ")
+    inputs = ui.get_inputs(title_list, "Please add the items")
     inputs.insert(0, random_id)
     table.append(inputs)
     data_manager.write_table_to_file("inventory/inventory.csv", table)
@@ -111,9 +112,22 @@ def update(table, id_):
 
     Returns:
         table with updated record
-    """
-
-    # your code
+   
+"""
+    new_items = []
+    ids = common.id_list(table)
+    if id_[0] in ids:
+        title_list = ["Name: ", "Manufacturer: ", "Purchase date: ", "Durability: "]
+        new_items.append(id_[0])
+        new_elements = ui.get_inputs(title_list, "Please add the items")
+        for item in new_elements:
+            new_items.append(item)
+        for i in range(len(table)):
+            if table[i][0] == id_[0]:
+                table[i] = new_items
+        data_manager.write_table_to_file("inventory/inventory.csv", table)
+    else:
+        raise ValueError("This ID is not in the file!")
 
     return table
 

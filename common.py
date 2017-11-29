@@ -31,3 +31,9 @@ def generate_random(table):
     generated = a+d+b+c
     return generated
 
+
+def id_list(table):
+    ids = []
+    for row in table:
+        ids.append(row[0])
+    return ids
