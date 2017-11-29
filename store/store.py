@@ -67,7 +67,7 @@ def remove(table, id_):
 
 
 def update(table, id_):
-    title_list = ["Name: ", "Manufacturer: ", "Price: ", "Durability: "]
+    title_list = ["Title: ", "Manufacturer: ", "Price: ", "In stock: "]
     new_items = []
     ids = common.id_list(table)
     if id_[0] in ids:
