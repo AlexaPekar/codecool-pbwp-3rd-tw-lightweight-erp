@@ -23,11 +23,11 @@ def generate_random(table):
     """
 
     generated = ''
-    a = ''.join(random.choice(string.ascii_uppercase) for i in range (2))
-    b = ''.join(random.choice(string.ascii_lowercase) for i in range (2))
+    a = ''.join(random.choice(string.ascii_uppercase) for i in range(2))
+    b = ''.join(random.choice(string.ascii_lowercase) for i in range(2))
     symbols = ["!","@","#","$","%","^","&","*","(",")","?"]
-    c = ''.join(random.choice(symbols) for i in range (2))
-    d = ''.join(random.choice(string.digits) for i in range (2))
+    c = ''.join(random.choice(symbols) for i in range(2))
+    d = ''.join(random.choice(string.digits) for i in range(2))
     generated = a+d+b+c
     return generated
 
