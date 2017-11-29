@@ -36,7 +36,8 @@ def start_module():
     elif option == "2":
         add(datas)
     elif option == "3":
-        remove(table, id_)
+        given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
+        remove(datas, given_id)
     elif option == "4":
         update(table, id_)
     elif option == "0":
@@ -70,12 +71,11 @@ def add(table):
     Returns:
         Table with a new record
     """
-    title_list = ["ID", "Name", "Manufacturer", "Purchase date", "Durability"]
-    add_in = []
-    add_in.append(common.generate_random(table))
-    for i in range(0, len(title_list)):
-        add_in.append(input("Add details please: "))
-    table.append(add_in)
+    title_list = ["Name: ", "Manufacturer: ", "Purchase date: ", "Durability: "]
+    random_id = common.generate_random(table)
+    inputs = ui.get_inputs(title_list, "Please add the items: ")
+    inputs.insert(0, random_id)
+    table.append(inputs)
     data_manager.write_table_to_file("inventory/inventory.csv", table)
     return table
 
@@ -92,7 +92,11 @@ def remove(table, id_):
         Table without specified record.
     """
 
-    # your code
+    for i in range(len(table)):
+        if table[i][0] == id_[0]:
+            table.pop(i)
+            break
+    data_manager.write_table_to_file("inventory/inventory.csv", table)
 
     return table
 
