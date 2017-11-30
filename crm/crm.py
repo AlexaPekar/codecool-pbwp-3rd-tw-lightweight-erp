@@ -19,8 +19,8 @@ import common
 def start_module():
     while True:
         datas = data_manager.get_table_from_file("crm/customers.csv")
-        options = ["Display table", "Add", "Remove", "Update"]
-        ui.print_menu("CRM Menu", options, "Main menu")
+        options = ["Display table", "Add", "Remove", "Update","Longest name's ID", "List of subscribed customers"]
+        ui.print_menu("\nCRM Menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
         if option == "1":
@@ -33,6 +33,10 @@ def start_module():
         elif option == "4":
             update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
             update(datas, update_id)
+        elif option == "5":
+            ui.print_result(get_longest_name_id(datas), "is the result of the 1st CRM extra function")
+        elif option == "6":
+            ui.print_result(get_subscribed_emails(datas), "\nis the result of the 2nd CRM extra function")
         elif option == "0":
             break
         else:

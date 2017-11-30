@@ -21,7 +21,7 @@ import common
 def start_module():
     while True:
         datas = data_manager.get_table_from_file("sales/sales.csv")
-        options = ["Display table", "Add", "Remove", "Update"]
+        options = ["Display table", "Add", "Remove", "Update", "The id of the item sold for the lowest price", "Items are sold between two given dates"]
         ui.print_menu("\nSales menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
@@ -35,6 +35,11 @@ def start_module():
         elif option == "4":
             update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
             update(datas, update_id)
+        elif option == "5":
+            ui.print_result(get_lowest_price_item_id(datas), "is the result of the 1st sales extra function.")
+        elif option == "6":
+            date_list = ui.get_inputs(["Month from: ", "Day from: ", "Year from: ", "Month to: ", "Day to: ", "Year to: "], "Please add the dates!")
+            ui.print_result(get_items_sold_between(datas, int(date_list[0]), int(date_list[1]), int(date_list[2]), int(date_list[3]), int(date_list[4]), int(date_list[5])), "")
         elif option == "0":
             break
         else:
@@ -44,6 +49,7 @@ def start_module():
 def show_table(table):
     title_list = ["ID", "Title", "Price", "Month", "Day", "Year"]
     ui.print_table(table, title_list)
+
 
 def add(table):
     title_list = ["Title: ", "Price: ", "Month: ", "Day: ", "Year: "]
@@ -130,7 +136,7 @@ def get_items_sold_between(table, month_from, day_from, year_from, month_to, day
         actual_day = int(table[i][4])
         actual_year = int(table[i][5])
         actual_date = (actual_year, actual_month, actual_day)
-        if (date_from) < (actual_date) < (date_to):
+        if date_from < actual_date < date_to:
             between_dates.append(list(actual_date))
     for i in range(len(table)):        
         for date in between_dates:

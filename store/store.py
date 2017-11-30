@@ -19,7 +19,7 @@ import common
 def start_module():
     while True:
         datas = data_manager.get_table_from_file("store/games.csv")
-        options = ["Display table", "Add", "Remove", "Update"]
+        options = ["Display table", "Add", "Remove", "Update", "Available games by manufacturer", "Average amount of games by manufacturer"]
         ui.print_menu("\nStore menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
@@ -33,6 +33,11 @@ def start_module():
         elif option == "4":
             update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
             update(datas, update_id)
+        elif option == "5":
+            ui.print_result(get_counts_by_manufacturers(datas), "is the result of the 1st store extra function.")
+        elif option == "6":
+            manufacturer = ui.get_inputs(["Please choose a manufacturer to get the average amount of games: "], "")
+            ui.print_result(get_average_by_manufacturer(datas, manufacturer[0]), "is the result of the 2nd store extra function.")
         elif option == "0":
             break
         else:
@@ -42,6 +47,7 @@ def start_module():
 def show_table(table):
     title_list = ["ID", "Title", "Manufacturer", "Price", "In stock"]
     ui.print_table(table, title_list)
+
 
 def add(table):
     title_list = ["Title: ", "Manufacturer: ", "Price: ", "In stock: "]
@@ -108,9 +114,12 @@ def get_average_by_manufacturer(table, manufacturer):
     manufacturers = []
     in_stocks = []
     total = 0
-    for i in range(len(table)):
-        if manufacturer == table[i][2]:
-            in_stocks.append(int(table[i][4]))
-    for in_stock in in_stocks:
-        total += in_stock
-    return total / len(in_stocks)
+    try:
+        for i in range(len(table)):
+            if manufacturer == table[i][2]:
+                in_stocks.append(int(table[i][4]))
+        for in_stock in in_stocks:
+            total += in_stock
+        return total / len(in_stocks)
+    except:
+        ui.print_error_message("There's no such manufacturer in table!")

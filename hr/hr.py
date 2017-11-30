@@ -18,8 +18,8 @@ import common
 def start_module():
     while True:
         datas = data_manager.get_table_from_file("hr/persons.csv")
-        options = ["Display table", "Add", "Remove", "Update"]
-        ui.print_menu("Human resources menu", options, "Main menu")
+        options = ["Display table", "Add", "Remove", "Update", "Oldest person", "Closest person to the average age"]
+        ui.print_menu("\nHuman resources menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
         if option == "1":
@@ -32,6 +32,10 @@ def start_module():
         elif option == "4":
             update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
             update(datas, update_id)
+        elif option == "5":
+            ui.print_result(get_oldest_person(datas), "is the result of the 1st HR extra function.")
+        elif option == "6":
+            ui.print_result(get_persons_closest_to_average(datas), "is the result of the 2nd HR extra function.")
         elif option == "0":
             break
         else:

@@ -23,7 +23,7 @@ def start_module():
     while True:
         datas = data_manager.get_table_from_file("accounting/items.csv")
         options = ["Display table", "Add", "Remove", "Update"]
-        ui.print_menu("Accounting Menu", options, "Main menu")
+        ui.print_menu("\nAccounting Menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
         if option == "1":
