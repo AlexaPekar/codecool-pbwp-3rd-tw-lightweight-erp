@@ -98,8 +98,6 @@ def update(table, id_):
 
 
 def get_longest_name_id(table):
-
-    data_manager.get_table_from_file("crm/customers.csv")
     names = []
     lenght_names = []
     longest_names = []
@@ -114,7 +112,7 @@ def get_longest_name_id(table):
         if len(name) == longest_name_length:
             longest_names.append(name)
     
-    common.asc_sort(longest_names)
+    common.asc_order(longest_names)
     the_name = longest_names[0]
     
     for line in table:
@@ -131,8 +129,6 @@ def get_subscribed_emails(table):
     subscribed_emails = []
     subscribed_customers = []
 
-    table = data_manager.get_table_from_file("crm/customers.csv")
-
     for line in table:
         if int(line[3]) == subscribed:
             subscribed_names.append(line[1])
@@ -140,5 +136,5 @@ def get_subscribed_emails(table):
     for i in range(len(subscribed_names)):
         subscribed_name = subscribed_names[i]
         subscribed_email = subscribed_emails[i]
-        subscribed_customers.append(subscribed_name + ";" + subscribed_email)
+        subscribed_customers.append(subscribed_email + ";" + subscribed_name)
     return subscribed_customers
