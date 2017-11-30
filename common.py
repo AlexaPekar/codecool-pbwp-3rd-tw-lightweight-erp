@@ -31,7 +31,7 @@ def id_list(table):
     return ids
 
 
-def asc_sort(list):
+def asc_order(list):
 
     N = len(list)
     iteration = 1
