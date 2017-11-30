@@ -120,7 +120,6 @@ def get_lowest_price_item_id(table):
             else:
                 j += 1
         iteration += 1
-    #lowest_ids.sort(reverse=True)
     return str(lowest_ids[0])
 
 
