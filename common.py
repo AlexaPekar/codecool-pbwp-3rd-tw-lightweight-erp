@@ -29,3 +29,20 @@ def id_list(table):
     for row in table:
         ids.append(row[0])
     return ids
+
+
+def asc_sort(list):
+
+    N = len(list)
+    iteration = 1
+    while iteration < N:
+        j = 0
+        while j <= (N-2):
+            if list[j] > list[j+1]:
+                temp = list[j+1]
+                list[j+1] = list[j]
+                list[j] = temp
+                j += 1
+            else:
+                j += 1
+        iteration += 1
