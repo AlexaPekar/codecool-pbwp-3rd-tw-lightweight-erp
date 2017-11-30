@@ -16,10 +16,11 @@ import data_manager
 # common module
 import common
 
+
 def start_module():
     while True:
         datas = data_manager.get_table_from_file("inventory/inventory.csv")
-        options = ["Display table", "Add", "Remove", "Update"]
+        options = ["Display table", "Add", "Remove", "Update", "Available items", "Average durability by manufacturers"]
         ui.print_menu("\nInventory menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
@@ -33,6 +34,10 @@ def start_module():
         elif option == "4":
             update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
             update(datas, update_id)
+        elif option == "5":
+            ui.print_result(get_available_items(datas), "is the result of 1st inventory extra function.")
+        elif option == "6":
+            ui.print_result(get_average_durability_by_manufacturers(datas), "is the result of 2nd inventory extra function.")
         elif option == "0":
             break
         else:
@@ -105,6 +110,8 @@ def get_available_items(table):
 # return type: a dictionary with this structure: { [manufacturer] : [avg] }
 #
 # @table: list of lists
+
+
 def get_average_durability_by_manufacturers(table):
     company_counter = {}
     sum_dict = {}
