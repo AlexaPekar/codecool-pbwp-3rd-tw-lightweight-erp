@@ -99,9 +99,7 @@ def update(table, id_):
 
 def get_longest_name_id(table):
 
-    with open("crm/customers.csv", "r") as file:
-        lines = file.readlines()
-    table = [element.replace("\n", "").split(";") for element in lines]
+    data_manager.get_table_from_file("crm/customers.csv")
     names = []
     lenght_names = []
     longest_names = []
