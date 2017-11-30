@@ -5,15 +5,9 @@
 # manufacturer: string
 # purchase_date: number (year)
 # durability: number (year)
-
-
-# importing everything you need
 import os
-# User interface module
 import ui
-# data manager module
 import data_manager
-# common module
 import common
 
 
@@ -37,7 +31,8 @@ def start_module():
         elif option == "5":
             ui.print_result(get_available_items(datas), "is the result of 1st inventory extra function.")
         elif option == "6":
-            ui.print_result(get_average_durability_by_manufacturers(datas), "is the result of 2nd inventory extra function.")
+            ui.print_result(get_average_durability_by_manufacturers(datas),
+                            "is the result of 2nd inventory extra function.")
         elif option == "0":
             break
         else:
@@ -48,7 +43,7 @@ def show_table(table):
     title_list = ["ID", "Name", "Manufacturer", "Purchase date", "Durability"]
     ui.print_table(table, title_list)
 
-    
+
 def add(table):
     title_list = ["Name: ", "Manufacturer: ", "Purchase date: ", "Durability: "]
     random_id = common.generate_random(table)
@@ -121,14 +116,14 @@ def get_average_durability_by_manufacturers(table):
         if row[2] in company_counter:
             company_counter[row[2]] += 1
         else:
-            company_counter[row[2]] = 1 
+            company_counter[row[2]] = 1
 
     for row in table:
         if row[2] in sum_dict:
             sum_dict[row[2]] += int(row[4])
         else:
             sum_dict[row[2]] = int(row[4])
-            
+
     for key, value in company_counter.items():
         avg_dict[key] = sum_dict[key] / value
     return avg_dict

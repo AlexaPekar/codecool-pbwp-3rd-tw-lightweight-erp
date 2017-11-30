@@ -7,21 +7,22 @@
 # day: number
 # year: number
 # month,year and day combined gives the date the sale was made
-
-# importing everything you need
 import os
-# User interface module
 import ui
-# data manager module
 import data_manager
-# common module
 import common
 
 
 def start_module():
     while True:
         datas = data_manager.get_table_from_file("sales/sales.csv")
-        options = ["Display table", "Add", "Remove", "Update", "The id of the item sold for the lowest price", "Items are sold between two given dates"]
+        options = [
+            "Display table",
+            "Add",
+            "Remove",
+            "Update",
+            "The id of the item sold for the lowest price",
+            "Items are sold between two given dates"]
         ui.print_menu("\nSales menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
@@ -38,8 +39,17 @@ def start_module():
         elif option == "5":
             ui.print_result(get_lowest_price_item_id(datas), "is the result of the 1st sales extra function.")
         elif option == "6":
-            date_list = ui.get_inputs(["Month from: ", "Day from: ", "Year from: ", "Month to: ", "Day to: ", "Year to: "], "Please add the dates!")
-            ui.print_result(get_items_sold_between(datas, int(date_list[0]), int(date_list[1]), int(date_list[2]), int(date_list[3]), int(date_list[4]), int(date_list[5])), "")
+            date_list = ui.get_inputs(["Month from: ", "Day from: ", "Year from: ",
+                                       "Month to: ", "Day to: ", "Year to: "], "Please add the dates!")
+            ui.print_result(
+                get_items_sold_between(
+                    datas, int(
+                        date_list[0]), int(
+                        date_list[1]), int(
+                        date_list[2]), int(
+                        date_list[3]), int(
+                            date_list[4]), int(
+                                date_list[5])), "")
         elif option == "0":
             break
         else:
@@ -106,15 +116,15 @@ def get_lowest_price_item_id(table):
     for row in table:
         if int(row[2]) == min(prices):
             lowest_ids.append(row[0])
-            
+
     N = len(lowest_ids)
     iteration = 1
     while iteration < N:
         j = 0
-        while j <= (N-2):
-            if lowest_ids[j] < lowest_ids[j+1]:
-                temp = lowest_ids[j+1]
-                lowest_ids[j+1] = lowest_ids[j]
+        while j <= (N - 2):
+            if lowest_ids[j] < lowest_ids[j + 1]:
+                temp = lowest_ids[j + 1]
+                lowest_ids[j + 1] = lowest_ids[j]
                 lowest_ids[j] = temp
                 j += 1
             else:
@@ -137,7 +147,7 @@ def get_items_sold_between(table, month_from, day_from, year_from, month_to, day
         actual_date = (actual_year, actual_month, actual_day)
         if date_from < actual_date < date_to:
             between_dates.append(list(actual_date))
-    for i in range(len(table)):        
+    for i in range(len(table)):
         for date in between_dates:
             table[i][5] = int(table[i][5])
             table[i][3] = int(table[i][3])

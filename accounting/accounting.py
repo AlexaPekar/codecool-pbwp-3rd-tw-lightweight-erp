@@ -130,5 +130,3 @@ def avg_amount(table, year):
                 counter -= int(table[i][5])
             profit_changes.append(table[i][4])
     return counter / len(profit_changes)
-    
-                

@@ -5,21 +5,22 @@
 # manufacturer: string
 # price: number (dollars)
 # in_stock: number
-
-# importing everything you need
 import os
-# User interface module
 import ui
-# data manager module
 import data_manager
-# common module
 import common
 
 
 def start_module():
     while True:
         datas = data_manager.get_table_from_file("store/games.csv")
-        options = ["Display table", "Add", "Remove", "Update", "Available games by manufacturer", "Average amount of games by manufacturer"]
+        options = [
+            "Display table",
+            "Add",
+            "Remove",
+            "Update",
+            "Available games by manufacturer",
+            "Average amount of games by manufacturer"]
         ui.print_menu("\nStore menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
@@ -37,7 +38,11 @@ def start_module():
             ui.print_result(get_counts_by_manufacturers(datas), "is the result of the 1st store extra function.")
         elif option == "6":
             manufacturer = ui.get_inputs(["Please choose a manufacturer to get the average amount of games: "], "")
-            ui.print_result(get_average_by_manufacturer(datas, manufacturer[0]), "is the result of the 2nd store extra function.")
+            ui.print_result(
+                get_average_by_manufacturer(
+                    datas,
+                    manufacturer[0]),
+                "is the result of the 2nd store extra function.")
         elif option == "0":
             break
         else:
@@ -121,5 +126,5 @@ def get_average_by_manufacturer(table, manufacturer):
         for in_stock in in_stocks:
             total += in_stock
         return total / len(in_stocks)
-    except:
+    except BaseException:
         ui.print_error_message("There's no such manufacturer in table!")

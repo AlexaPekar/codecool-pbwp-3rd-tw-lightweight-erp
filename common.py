@@ -17,10 +17,10 @@ def generate_random(table):
     generated = ''
     a = ''.join(random.choice(string.ascii_uppercase) for i in range(2))
     b = ''.join(random.choice(string.ascii_lowercase) for i in range(2))
-    symbols = ["!","@","#","$","%","^","&","*","(",")","?"]
+    symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "?"]
     c = ''.join(random.choice(symbols) for i in range(2))
     d = ''.join(random.choice(string.digits) for i in range(2))
-    generated = a+d+b+c
+    generated = a + d + b + c
     return generated
 
 
@@ -37,10 +37,10 @@ def asc_order(list):
     iteration = 1
     while iteration < N:
         j = 0
-        while j <= (N-2):
-            if list[j] > list[j+1]:
-                temp = list[j+1]
-                list[j+1] = list[j]
+        while j <= (N - 2):
+            if list[j] > list[j + 1]:
+                temp = list[j + 1]
+                list[j + 1] = list[j]
                 list[j] = temp
                 j += 1
             else:

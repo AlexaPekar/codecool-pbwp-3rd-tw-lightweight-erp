@@ -4,22 +4,16 @@
 # name: string
 # email: string
 # subscribed: boolean (Is she/he subscribed to the newsletter? 1/0 = yes/not)
-
-
-# importing everything you need
 import os
-# User interface module
 import ui
-# data manager module
 import data_manager
-# common module
 import common
 
 
 def start_module():
     while True:
         datas = data_manager.get_table_from_file("crm/customers.csv")
-        options = ["Display table", "Add", "Remove", "Update","Longest name's ID", "List of subscribed customers"]
+        options = ["Display table", "Add", "Remove", "Update", "Longest name's ID", "List of subscribed customers"]
         ui.print_menu("\nCRM Menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
@@ -44,13 +38,11 @@ def start_module():
 
 
 def show_table(table):
-    
     title_list = ["ID", "Name", "E-mail", "Subscribed"]
     ui.print_table(table, title_list)
 
 
 def add(table):
-
     title_list = ["Name: ", "E-mail: ", "Subscribed: "]
     random_id = common.generate_random(table)
     inputs = ui.get_inputs(title_list, "Please add the items")
@@ -61,7 +53,6 @@ def add(table):
 
 
 def remove(table, id_):
-
     ids = common.id_list(table)
     if id_[0] in ids:
         for i in range(len(table)):
@@ -75,7 +66,6 @@ def remove(table, id_):
 
 
 def update(table, id_):
-
     title_list = ["Name: ", "E-mail: ", "Subscribed: "]
     new_items = []
     ids = common.id_list(table)
@@ -115,10 +105,10 @@ def get_longest_name_id(table):
     for name in names:
         if len(name) == longest_name_length:
             longest_names.append(name)
-    
+
     common.asc_order(longest_names)
     the_name = longest_names[0]
-    
+
     for line in table:
         if the_name in line:
             the_id = line[0]

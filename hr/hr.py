@@ -3,15 +3,9 @@
 #     Unique and random generated (at least 2 special char()expect: ';'), 2 number, 2 lower and 2 upper case letter)
 # name: string
 # birth_date: number (year)
-
-
-# importing everything you need
 import os
-# User interface module
 import ui
-# data manager module
 import data_manager
-# common module
 import common
 
 
@@ -43,13 +37,11 @@ def start_module():
 
 
 def show_table(table):
-
     title_list = ["ID", "Name", "Birth date"]
     ui.print_table(table, title_list)
 
 
 def add(table):
-
     title_list = ["Name: ", "Birth date: "]
     random_id = common.generate_random(table)
     inputs = ui.get_inputs(title_list, "Please add the items")
@@ -69,12 +61,10 @@ def remove(table, id_):
         data_manager.write_table_to_file("hr/persons.csv", table)
     else:
         ui.print_error_message("This ID is not in the file!")
-
     return table
 
 
 def update(table, id_):
-
     title_list = ["Name: ", "Birth date: "]
     new_items = []
     ids = common.id_list(table)
@@ -89,7 +79,6 @@ def update(table, id_):
         data_manager.write_table_to_file("hr/persons.csv", table)
     else:
         ui.print_error_message("This ID is not in the file!")
-
     return table
 
 
