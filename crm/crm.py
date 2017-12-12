@@ -21,12 +21,15 @@ def start_module():
             show_table(datas)
         elif option == "2":
             add(datas)
+            write_to_file(datas)
         elif option == "3":
             given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
             remove(datas, given_id)
+            write_to_file(datas)
         elif option == "4":
             update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
             update(datas, update_id)
+            write_to_file(datas)
         elif option == "5":
             ui.print_result(get_longest_name_id(datas), "is the result of the 1st CRM extra function")
         elif option == "6":
@@ -38,49 +41,26 @@ def start_module():
 
 
 def show_table(table):
-    title_list = ["ID", "Name", "E-mail", "Subscribed"]
-    ui.print_table(table, title_list)
+    module_headers = ["ID", "Name", "E-mail", "Subscribed"]
+    return common.common_show_table(table, module_headers)
 
 
 def add(table):
-    title_list = ["Name: ", "E-mail: ", "Subscribed: "]
-    random_id = common.generate_random(table)
-    inputs = ui.get_inputs(title_list, "Please add the items")
-    inputs.insert(0, random_id)
-    table.append(inputs)
-    data_manager.write_table_to_file("crm/customers.csv", table)
-    return table
+    module_headers = ["Name: ", "E-mail: ", "Subscribed: "]
+    return common.common_add(table, module_headers)
 
 
 def remove(table, id_):
-    ids = common.id_list(table)
-    if id_[0] in ids:
-        for i in range(len(table)):
-            if table[i][0] == id_[0]:
-                table.pop(i)
-                break
-        data_manager.write_table_to_file("crm/customers.csv", table)
-    else:
-        ui.print_error_message("This ID is not in the file!")
-    return table
+    return common.common_remove(table, id_, "crm/customers.csv")
 
 
 def update(table, id_):
-    title_list = ["Name: ", "E-mail: ", "Subscribed: "]
-    new_items = []
-    ids = common.id_list(table)
-    if id_[0] in ids:
-        new_items.append(id_[0])
-        new_elements = ui.get_inputs(title_list, "Please add the items")
-        for item in new_elements:
-            new_items.append(item)
-        for i in range(len(table)):
-            if table[i][0] == id_[0]:
-                table[i] = new_items
-        data_manager.write_table_to_file("crm/customers.csv", table)
-    else:
-        ui.print_error_message("This ID is not in the file!")
-    return table
+    module_headers = ["Name: ", "E-mail: ", "Subscribed: "]
+    return common.common_update(table, id_, "crm/customers.csv", module_headers)
+
+
+def write_to_file(table):
+    return common.common_write_to_file(table, "crm/customers.csv")
 
 
 # special functions:
@@ -106,7 +86,7 @@ def get_longest_name_id(table):
         if len(name) == longest_name_length:
             longest_names.append(name)
 
-    common.asc_order(longest_names)
+    common.collect_ids(longest_names)
     the_name = longest_names[0]
 
     for line in table:
