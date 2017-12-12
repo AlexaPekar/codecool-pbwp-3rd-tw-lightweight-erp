@@ -23,10 +23,28 @@ def start_module():
     Returns:
         None
     """
-
-    # your code
-
-    pass
+    while True:
+        datas = data_manager.get_table_from_file("inventory/inventory.csv")
+        options = ["Get the last buyer name", "Get the last buyer ID", "Get the buyer's name spent the most and the amount of money spent", "Get the buyer's ID spent the most and the amount of money spent", "Get the most frequent buyers' names", "Get the most frequent buyers' IDs"]
+        ui.print_menu("\nData analyser menu", options, "Main menu")
+        inputs = ui.get_inputs(["Please, choose an option: "], "")
+        option = inputs[0]
+        if option == "1":
+            print(get_the_last_buyer_name())
+        elif option == "2":
+            print(get_the_last_buyer_id())
+        elif option == "3":
+            print(get_the_buyer_name_spent_most_and_the_money_spent())
+        elif option == "4":
+            print(get_the_buyer_id_spent_most_and_the_money_spent())
+        elif option == "5":
+            print(get_the_most_frequent_buyers_names(num=1))
+        elif option == "6":
+            print(get_the_most_frequent_buyers_ids(num=1))
+        elif option == "0":
+            break
+        else:
+            ui.print_error_message("There is no such option.")
 
 
 def get_the_last_buyer_name():
