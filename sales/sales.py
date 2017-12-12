@@ -210,10 +210,19 @@ def get_item_id_sold_last_from_table(table):
     Returns:
         (str) the _id_ of the item that was sold most recently.
     """
-
-    # your code
-
-    pass
+    dates = []
+    for i in range(len(table)):
+        month = int(table[i][3])
+        day = int(table[i][4])
+        year = int(table[i][5])
+        date = (year, month, day)
+        dates.append(date)
+    for i in range(len(table)):
+        month = int(table[i][3])
+        day = int(table[i][4])
+        year = int(table[i][5])
+        if year and month and day in max(dates):
+            return table[i][0]
 
 
 def get_item_title_sold_last_from_table(table):
@@ -226,10 +235,19 @@ def get_item_title_sold_last_from_table(table):
     Returns:
         (str) the _title_ of the item that was sold most recently.
     """
-
-    # your code
-
-    pass
+    dates = []
+    for i in range(len(table)):
+        month = int(table[i][3])
+        day = int(table[i][4])
+        year = int(table[i][5])
+        date = (year, month, day)
+        dates.append(date)
+    for i in range(len(table)):
+        month = int(table[i][3])
+        day = int(table[i][4])
+        year = int(table[i][5])
+        if year and month and day in max(dates):
+            return table[i][1]
 
 
 def get_the_sum_of_prices(item_ids):
