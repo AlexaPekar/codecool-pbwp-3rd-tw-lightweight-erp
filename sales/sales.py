@@ -141,19 +141,11 @@ def get_items_sold_between(table, month_from, day_from, year_from, month_to, day
     return filtered_table
 
 
-    # your code
-
-    pass
-
-# functions supports data abalyser
-# --------------------------------
-
-
 def get_title_by_id(id):
 
     """
     Reads the table with the help of the data_manager module.
-    Returns the title (str) of the item with the given id (str) on None om case of non-existing id.
+    Returns the title (str) of the item with the given id (str) or None in case of non-existing id.
 
     Args:
         id (str): the id of the item
@@ -161,10 +153,11 @@ def get_title_by_id(id):
     Returns:
         str the title of the item
     """
+    table = data_manager.get_table_from_file("sales/sales.csv")
+    for i in range(len(table)):
+        if table[i][0] == id:
+            return table[i][1]
 
-    # your code
-
-    pass
 
 
 def get_title_by_id_from_table(table, id):
