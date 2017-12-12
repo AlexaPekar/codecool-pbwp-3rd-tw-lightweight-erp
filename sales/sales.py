@@ -153,11 +153,10 @@ def get_title_by_id(id):
     Returns:
         str the title of the item
     """
-    table = data_manager.get_table_from_file("sales/sales.csv")
-    for i in range(len(table)):
-        if table[i][0] == id:
-            return table[i][1]
-
+    datas = data_manager.get_table_from_file("sales/sales.csv")
+    for i in range(len(datas)):
+        if datas[i][0] == id:
+            return datas[i][1]
 
 
 def get_title_by_id_from_table(table, id):
@@ -172,10 +171,9 @@ def get_title_by_id_from_table(table, id):
     Returns:
         str the title of the item
     """
-
-    # your code
-
-    pass
+    for i in range(len(table)):
+            if table[i][0] == id:
+                return table[i][1]
 
 
 def get_item_id_sold_last():
@@ -186,10 +184,20 @@ def get_item_id_sold_last():
     Returns:
         (str) the _id_ of the item that was sold most recently.
     """
-
-    # your code
-
-    pass
+    datas = data_manager.get_table_from_file("sales/sales.csv")
+    dates = []
+    for i in range(len(datas)):
+        month = int(datas[i][3])
+        day = int(datas[i][4])
+        year = int(datas[i][5])
+        date = (year, month, day)
+        dates.append(date)
+    for i in range(len(datas)):
+        month = int(datas[i][3])
+        day = int(datas[i][4])
+        year = int(datas[i][5])
+        if year and month and day in max(dates):
+            return datas[i][0]
 
 
 def get_item_id_sold_last_from_table(table):
