@@ -139,7 +139,6 @@ def get_lowest_price_item_id(table):
 # the question: Which items are sold between two given dates ? (from_date < sale_date < to_date)
 # return type: list of lists (the filtered table)
 def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
-<<<<<<< HEAD
     date_from = (year_from, month_from, day_from)
     date_to = (year_to, month_to, day_to)
     between_dates = []
@@ -160,7 +159,7 @@ def get_items_sold_between(table, month_from, day_from, year_from, month_to, day
             if date[0] == table[i][5] and date[1] == table[i][3] and date[2] == table[i][4]:
                 filtered_table.append(table[i])
     return filtered_table
-=======
+
 
     # your code
 
@@ -409,4 +408,4 @@ def get_num_of_sales_per_customer_ids_from_table(table):
     # your code
 
     pass
->>>>>>> 4f7b26a11b724d5828f76a050209964fdb726012
+
