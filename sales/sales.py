@@ -261,10 +261,13 @@ def get_the_sum_of_prices(item_ids):
     Returns:
         (number) the sum of the items' prices
     """
+    datas = data_manager.get_table_from_file("sales/sales.csv")
+    sum_of_items_price = 0
+    for i in range(len(datas)):
+        if datas[i][0] in item_ids:
+            sum_of_items_price += int(datas[i][2])
+    return sum_of_items_price
 
-    # your code
-
-    pass
 
 
 def get_the_sum_of_prices_from_table(table, item_ids):
@@ -278,10 +281,11 @@ def get_the_sum_of_prices_from_table(table, item_ids):
     Returns:
         (number) the sum of the items' prices
     """
-
-    # your code
-
-    pass
+    sum_of_items_price = 0
+    for i in range(len(table)):
+        if table[i][0] in item_ids:
+            sum_of_items_price += int(table[i][2])
+    return sum_of_items_price
 
 
 def get_customer_id_by_sale_id(sale_id):
