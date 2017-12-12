@@ -33,12 +33,15 @@ def start_module():
             show_table(datas)
         elif option == "2":
             add(datas)
+            write_to_file(datas)
         elif option == "3":
             given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
             remove(datas, given_id)
+            write_to_file(datas)
         elif option == "4":
             update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
             update(datas, update_id)
+            write_to_file(datas)
         elif option == "5":
             ui.print_result(get_lowest_price_item_id(datas), "is the result of the 1st sales extra function.")
         elif option == "6":
@@ -60,49 +63,26 @@ def start_module():
 
 
 def show_table(table):
-    title_list = ["ID", "Title", "Price", "Month", "Day", "Year"]
-    ui.print_table(table, title_list)
+    module_headers = ["ID", "Title", "Price", "Month", "Day", "Year"]
+    return common.common_show_table(table, module_headers)
 
 
 def add(table):
-    title_list = ["Title: ", "Price: ", "Month: ", "Day: ", "Year: "]
-    random_id = common.generate_random(table)
-    inputs = ui.get_inputs(title_list, "Please add the items")
-    inputs.insert(0, random_id)
-    table.append(inputs)
-    data_manager.write_table_to_file("sales/sales.csv", table)
-    return table
+    module_headers = ["Title: ", "Price: ", "Month: ", "Day: ", "Year: "]
+    return common.common_add(table, module_headers)
+
+
+def write_to_file(table):
+    return common.common_write_to_file(table, "sales/sales.csv")
 
 
 def remove(table, id_):
-    ids = common.id_list(table)
-    if id_[0] in ids:
-        for i in range(len(table)):
-            if table[i][0] == id_[0]:
-                table.pop(i)
-                break
-        data_manager.write_table_to_file("sales/sales.csv", table)
-    else:
-        ui.print_error_message("There is no such option.")
-    return table
+    return common.common_remove(table, id_, "sales/sales.csv")
 
 
 def update(table, id_):
-    title_list = ["Title: ", "Price: ", "Month: ", "Day: ", "Year: "]
-    new_items = []
-    ids = common.id_list(table)
-    if id_[0] in ids:
-        new_items.append(id_[0])
-        new_elements = ui.get_inputs(title_list, "Please add the items")
-        for item in new_elements:
-            new_items.append(item)
-        for i in range(len(table)):
-            if table[i][0] == id_[0]:
-                table[i] = new_items
-        data_manager.write_table_to_file("sales/sales.csv", table)
-    else:
-        ui.print_error_message("There is no such option.")
-    return table
+    module_headers = ["Title: ", "Price: ", "Month: ", "Day: ", "Year: "]
+    return common.common_update(table, id_, "sales/sales.csv", module_headers)
 
 
 # special functions:
