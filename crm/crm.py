@@ -117,7 +117,6 @@ def get_longest_name_id(table):
 # return type: list of strings (where string is like email+separator+name, separator=";")
 
 
-<<<<<<< HEAD
 def get_subscribed_emails(table):
     subscribed = 1
     subscribed_names = []
@@ -133,7 +132,6 @@ def get_subscribed_emails(table):
         subscribed_email = subscribed_emails[i]
         subscribed_customers.append(subscribed_email + ";" + subscribed_name)
     return subscribed_customers
-=======
     pass
 
 

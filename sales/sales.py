@@ -7,12 +7,9 @@
 # day: number
 # year: number
 # month,year and day combined gives the date the sale was made
-<<<<<<< HEAD
-=======
 # customer_id: string, id from the crm
 
 # importing everything you need
->>>>>>> 4f7b26a11b724d5828f76a050209964fdb726012
 import os
 import ui
 import data_manager
