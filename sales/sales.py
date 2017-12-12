@@ -63,7 +63,7 @@ def start_module():
 
 
 def show_table(table):
-    module_headers = ["ID", "Title", "Price", "Month", "Day", "Year"]
+    module_headers = ["ID", "Title", "Price", "Month", "Day", "Year","Customer ID"]
     return common.common_show_table(table, module_headers)
 
 

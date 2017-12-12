@@ -3,6 +3,7 @@
 import random
 import string
 import ui
+import data_manager
 
 
 # generate and return a unique and random string
@@ -24,14 +25,14 @@ def generate_random(table):
     return generated
 
 
-def id_list(table):
+def collect_ids(table):
     ids = []
     for row in table:
         ids.append(row[0])
     return ids
 
 
-def asc_order(list):
+def sort_list_in_asc(list):
 
     N = len(list)
     iteration = 1
@@ -46,3 +47,47 @@ def asc_order(list):
             else:
                 j += 1
         iteration += 1
+
+
+def common_update(table, id_, file_name, header_list):
+    new_items = []
+    ids = collect_ids(table)
+    if id_[0] in ids:
+        new_items.append(id_[0])
+        new_elements = ui.get_inputs(header_list, "Please add the items")
+        for item in new_elements:
+            new_items.append(item)
+        for i in range(len(table)):
+            if table[i][0] == id_[0]:
+                table[i] = new_items
+    else:
+        ui.print_error_message("There is no such option.")
+    return table
+
+
+def common_add(table, header_list):
+    random_id = generate_random(table)
+    inputs = ui.get_inputs(header_list, "Please add the items")
+    inputs.insert(0, random_id)
+    table.append(inputs)
+    return table
+
+
+def common_show_table(table, header_list):
+    return ui.print_table(table, header_list)
+
+
+def common_remove(table, id_, file_name):
+    ids = collect_ids(table)
+    if id_[0] in ids:
+        for i in range(len(table)):
+            if table[i][0] == id_[0]:
+                table.pop(i)
+                break
+    else:
+        ui.print_error_message("There is no such option.")
+    return table
+
+
+def common_write_to_file(table, file_name):
+    return data_manager.write_table_to_file(file_name, table)

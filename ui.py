@@ -1,6 +1,5 @@
 def print_table(table, title_list):
     table.insert(0, title_list)
-
     maxlength = []
     for column in range(len(table[0])):
         length = 0
@@ -16,6 +15,7 @@ def print_table(table, title_list):
             cell = row[cell_j]
             width = maxlength[cell_j]
             print(" | " + cell.center(width) + " | ", end='')
+
 
 
 def print_result(result, label):
