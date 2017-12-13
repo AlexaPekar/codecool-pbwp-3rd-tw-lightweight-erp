@@ -406,10 +406,14 @@ def get_num_of_sales_per_customer_ids():
      Returns:
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
-
-    # your code
-
-    pass
+    datas = data_manager.get_table_from_file("sales/sales.csv")
+    id_connections = {}
+    for i in range(len(datas)):
+        if datas[i][6] in id_connections:
+            id_connections[datas[i][6]] += 1
+        else:
+            id_connections[datas[i][6]] = 1
+    return id_connections
 
 
 def get_num_of_sales_per_customer_ids_from_table(table):
@@ -422,8 +426,10 @@ def get_num_of_sales_per_customer_ids_from_table(table):
      Returns:
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
-
-    # your code
-
-    pass
-
+    id_connections = {}
+    for i in range(len(table)):
+        if table[i][6] in id_connections:
+            id_connections[table[i][6]] += 1
+        else:
+            id_connections[table[i][6]] = 1
+    return id_connections
