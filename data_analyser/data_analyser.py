@@ -54,9 +54,8 @@ def get_the_last_buyer_name():
     Returns:
         Customer name of the last buyer
     """
-    sale_id = sales.get_item_id_sold_last()
-    customer_id = sales.get_customer_id_by_sale_id(sale_id)
-    name = crm.get_name_by_id(customer_id)
+    result = get_the_last_buyer_id()
+    name = crm.get_name_by_id(result)
     return name
 
 
@@ -72,7 +71,6 @@ def get_the_last_buyer_id():
     return customer_id
         
 
-
 def get_the_buyer_name_spent_most_and_the_money_spent():
     """
     Returns the customer's _name_ who spent the most in sum and the money (s)he spent.
@@ -82,11 +80,12 @@ def get_the_buyer_name_spent_most_and_the_money_spent():
    Returns:
         Tuple of customer name and the sum the customer spent
     """
-
-    # your code
-
-    pass
-
+    result_tuple = get_the_buyer_id_spent_most_and_the_money_spent()
+    name = crm.get_name_by_id(result_tuple[0])
+    result_list = list(result_tuple)
+    result_list[0] = name
+    return tuple(result_list)
+    
 
 def get_the_buyer_id_spent_most_and_the_money_spent():
     """
@@ -97,10 +96,18 @@ def get_the_buyer_id_spent_most_and_the_money_spent():
    Returns:
         Tuple of customer id and the sum the customer spent
     """
-
-    # your code
-
-    pass
+    result = []
+    money_spent_by_customers = []
+    ids_dict = sales.get_all_sales_ids_for_customer_ids()
+    for key, value in ids_dict.items():
+        ids_dict[key] = sales.get_the_sum_of_prices(ids_dict[key])
+        money_spent_by_customers.append(ids_dict[key])
+        max_money_spent = max(money_spent_by_customers)
+    for key, value in ids_dict.items():
+        if max_money_spent == ids_dict[key]:
+            result.append(key)
+            result.append(max_money_spent)
+    return tuple(result)
 
 
 def get_the_most_frequent_buyers_names(num=1):

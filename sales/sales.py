@@ -63,7 +63,7 @@ def start_module():
 
 
 def show_table(table):
-    module_headers = ["ID", "Title", "Price", "Month", "Day", "Year","Customer ID"]
+    module_headers = ["ID", "Title", "Price", "Month", "Day", "Year", "Customer ID"]
     return common.common_show_table(table, module_headers)
 
 
@@ -269,7 +269,6 @@ def get_the_sum_of_prices(item_ids):
     return sum_of_items_price
 
 
-
 def get_the_sum_of_prices_from_table(table, item_ids):
     """
     Returns the sum of the prices of the items in the item_ids.
@@ -318,6 +317,7 @@ def get_customer_id_by_sale_id_from_table(table, sale_id):
         if sale_id in table[i]:
             return table[i][6]
 
+
 def get_all_customer_ids():
     """
     Reads the sales table with the help of the data_manager module.
@@ -344,7 +344,6 @@ def get_all_customer_ids_from_table(table):
     for i in range(len(table)):
         customer_ids.append(table[i][6])
     return set(customer_ids)
-
 
 
 def get_all_sales_ids_for_customer_ids():
