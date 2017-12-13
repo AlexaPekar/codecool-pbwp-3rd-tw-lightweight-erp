@@ -325,10 +325,11 @@ def get_all_customer_ids():
     Returns:
          set of customer_ids that are present in the table
     """
-
-    # your code
-
-    pass
+    datas = data_manager.get_table_from_file("sales/sales.csv")
+    customer_ids = []
+    for i in range(len(datas)):
+        customer_ids.append(datas[i][6])
+    return set(customer_ids)
 
 
 def get_all_customer_ids_from_table(table):
@@ -339,10 +340,11 @@ def get_all_customer_ids_from_table(table):
     Returns:
          set of customer_ids that are present in the table
     """
+    customer_ids = []
+    for i in range(len(table)):
+        customer_ids.append(table[i][6])
+    return set(customer_ids)
 
-    # your code
-
-    pass
 
 
 def get_all_sales_ids_for_customer_ids():
@@ -356,13 +358,21 @@ def get_all_sales_ids_for_customer_ids():
          (dict of (key, value): (customer_id, (list) sale_ids)) where the sale_ids list contains
          all the sales id belong to the given customer_id
     """
+    datas = data_manager.get_table_from_file("sales/sales.csv")
+    ids = set()
+    dict_ids = {}
+    for line in datas:
+        ids.add(line[6])
+    for item in ids:
+        dict_ids[item] = []
+    for line in datas:
+        actual_value = dict_ids[line[6]]
+        actual_value.append(line[0])
+        dict_ids[line[6]] = actual_value
+    return dict_ids
 
-    # your code
 
-    pass
-
-
-def get_all_sales_ids_for_customer_ids_form_table(table):
+def get_all_sales_ids_for_customer_ids_from_table(table):
     """
     Returns a dictionary of (customer_id, sale_ids) where:
         customer_id:
@@ -374,10 +384,17 @@ def get_all_sales_ids_for_customer_ids_form_table(table):
          (dict of (key, value): (customer_id, (list) sale_ids)) where the sale_ids list contains
          all the sales id belong to the given customer_id
     """
-
-    # your code
-
-    pass
+    ids = set()
+    dict_ids = {}
+    for line in table:
+        ids.add(line[6])
+    for item in ids:
+        dict_ids[item] = []
+    for line in table:
+        actual_value = dict_ids[line[6]]
+        actual_value.append(line[0])
+        dict_ids[line[6]] = actual_value
+    return dict_ids
 
 
 def get_num_of_sales_per_customer_ids():
