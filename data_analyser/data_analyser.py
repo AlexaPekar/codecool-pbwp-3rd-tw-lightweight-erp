@@ -123,10 +123,13 @@ def get_the_most_frequent_buyers_names(num=1):
     Returns:
         Ordered list of tuples of customer names and num of sales
     """
-
-    # your code
-
-    pass
+    result = get_the_most_frequent_buyers_ids(num)
+    for i in range(len(result)):
+        result[i] = list(result[i])
+        name = crm.get_name_by_id(result[i][0])
+        result[i][0] = name
+        result[i] = tuple(result[i])
+    return result
 
 
 def get_the_most_frequent_buyers_ids(num=1):
@@ -142,7 +145,14 @@ def get_the_most_frequent_buyers_ids(num=1):
     Returns:
         Ordered list of tuples of customer ids and num of sales
     """
-
-    # your code
-
-    pass
+    result = []
+    all_customers = []
+    number_of_sales = []
+    customer_sales = sales.get_num_of_sales_per_customer_ids()
+    for i in sorted(customer_sales, key=customer_sales.get, reverse=True):
+        all_customers.append(tuple([i, customer_sales[i]]))
+    if num > len(all_customers):
+        num = len(all_customers)
+    for i in range(0, num):
+        result.append(all_customers[i])
+    return result
