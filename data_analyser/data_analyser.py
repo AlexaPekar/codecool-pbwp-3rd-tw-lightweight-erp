@@ -7,7 +7,7 @@ from crm import crm
 
 def start_module():
     while True:
-        options = ["Get the last buyer name", "Get the last buyer ID", "Get the buyer's name spent the most and the amount of money spent", "Get the buyer's ID spent the most and the amount of money spent", "Get the most frequent buyers' names", "Get the most frequent buyers' IDs", "Get the name of the customers who did not buy anything"]
+        options = ["Get the last buyer name", "Get the last buyer ID", "Get the buyer's name spent the most and the amount of money spent", "Get the buyer's ID spent the most and the amount of money spent", "Get the most frequent buyers' names", "Get the most frequent buyers' IDs", "Get the name of the customers who did not buy anything","Get all subscribed people's name and e-mail adress","Get all subscribed buyers's e-mail adress and name","Get all subscribed buyers's e-mail adress and the title of the purchased games"]
         ui.print_menu("\nData analyser menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
@@ -33,7 +33,16 @@ def start_module():
             ui.print_result(get_the_most_frequent_buyers_ids(int(number_of_buyers[0])), "ID(s) of the most frequent buyer(s):")
         elif option == "7":
             os.system("clear")
-            ui.print_result(get_names_no_sale_belongs_to(), "Name(s) of person(s) who did not buy anything:")
+            ui.print_result(get_names_no_sale_belongs_to(), "The name(s) of person(s) who did not buy anything:\n")
+        elif option == "8":
+            os.system("clear")
+            ui.print_result(get_all_subscribed_people(), "The name(s) and e-mail adress(es) of the subscribed people:\n")
+        elif option == "9":
+            os.system("clear")
+            ui.print_result(get_all_subscribed_buyers_names(), "The e-mail adress(es) and names of the subscribed buyers:\n")
+        elif option == "10":
+            os.system("clear")
+            ui.print_result(get_all_subscribed_buyers_games(), "The e-mail adress(es) and the title of the purchased games of the subscribed buyers:\n")
         elif option == "0":
             os.system("clear")
             break
@@ -136,7 +145,7 @@ def get_all_subscribed_people():
     return subscribed_people
 
 
-def get_all_subscribed_buyers():
+def get_all_subscribed_buyers_names():
     people_ids = []
     customer_ids = []
     subscribed_customers = []
@@ -154,6 +163,44 @@ def get_all_subscribed_buyers():
     for id_ in customer_ids:
         for line in crm_table:
             if id_ in line:
-                if tuple([line[1], line[2]]) not in subscribed_customers:
-                    subscribed_customers.append(tuple([line[1], line[2]]))
+                if tuple([line[2], line[1]]) not in subscribed_customers:
+                    subscribed_customers.append(tuple([line[2], line[1]]))
     return subscribed_customers
+
+def get_all_subscribed_buyers_games():
+    emails = []
+    customer_ids = []
+    ids_games = []
+    result = []
+    result_with_tuple = []
+    crm_table = common.get_crm_table()
+    sales_table = common.get_sales_table()
+    emails_names = get_all_subscribed_buyers_names()
+    for item in emails_names:
+        emails.append(item[0])
+    for email in emails:
+        for line in crm_table:
+            if email in line:
+                customer_ids.append(line[0])
+    for id_ in customer_ids:
+        for line in sales_table:
+            ids_games.append([id_,line[1]])
+    for id_ in customer_ids:
+        result.append([id_])
+    for item in result:
+        temp = []
+        for id_game in ids_games:
+            if id_game[0] == item[0]:
+                temp.append(id_game[1])
+        item.append(temp)
+    for item in result:
+        for line in crm_table:
+            if item[0] in line:
+                item[0] = line[2]
+    for item in result:
+        result_with_tuple.append(tuple(item))
+    return result_with_tuple
+
+
+
+
