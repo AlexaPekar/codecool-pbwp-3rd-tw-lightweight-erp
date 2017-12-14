@@ -1,18 +1,8 @@
-# implement commonly used functions here
-
 import random
 import string
 import ui
 import data_manager
 
-
-# generate and return a unique and random string
-# other expectations:
-# - at least 2 special characters (except: ';'), 2 number, 2 lower and 2 upper case letter
-# - it must be unique in the list
-#
-# @table: list of lists
-# @generated: string - randomly generated string (unique in the @table)
 
 def generate_random(table):
     generated = ''

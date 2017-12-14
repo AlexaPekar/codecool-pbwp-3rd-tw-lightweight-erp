@@ -1,10 +1,3 @@
-# data structure:
-# id: string
-#     Unique and random generated (at least 2 special char()expect: ';'), 2 number, 2 lower and 2 upper case letter)
-# title: string
-# manufacturer: string
-# price: number (dollars)
-# in_stock: number
 import os
 import ui
 import data_manager
@@ -82,11 +75,6 @@ def write_to_file(table):
     return common.common_write_to_file(table, "store/games.csv")
 
 
-# special functions:
-# ------------------
-
-# the question: How many different kinds of game are available of each manufacturer?
-# return type: a dictionary with this structure: { [manufacturer] : [count] }
 def get_counts_by_manufacturers(table):
     manufacturers = []
     manufacturer_dict = {}
@@ -100,8 +88,6 @@ def get_counts_by_manufacturers(table):
     return manufacturer_dict
 
 
-# the question: What is the average amount of games in stock of a given manufacturer?
-# return type: number
 def get_average_by_manufacturer(table, manufacturer):
     manufacturers = []
     in_stocks = []

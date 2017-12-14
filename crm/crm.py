@@ -1,9 +1,3 @@
-# data structure:
-# id: string
-#     Unique and randomly generated (at least 2 special char()expect: ';'), 2 number, 2 lower and 2 upper case letter)
-# name: string
-# email: string
-# subscribed: boolean (Is she/he subscribed to the newsletter? 1/0 = yes/not)
 import os
 import ui
 import data_manager
@@ -78,14 +72,6 @@ def write_to_file(table):
     return common.common_write_to_file(table, "crm/customers.csv")
 
 
-# special functions:
-# ------------------
-
-
-# the question: What is the id of the customer with the longest name ?
-# return type: string (id) - if there are more than one longest name, return the first by descending alphabetical order
-
-
 def get_longest_name_id(table):
     names = []
     lenght_names = []
@@ -108,8 +94,6 @@ def get_longest_name_id(table):
         if the_name in line:
             the_id = line[0]
     return the_id
-# the question: Which customers has subscribed to the newsletter?
-# return type: list of strings (where string is like email+separator+name, separator=";")
 
 
 def get_subscribed_emails(table):
@@ -127,11 +111,6 @@ def get_subscribed_emails(table):
         subscribed_email = subscribed_emails[i]
         subscribed_customers.append(subscribed_email + ";" + subscribed_name)
     return subscribed_customers
-    pass
-
-
-# functions supports data analyser
-# --------------------------------
 
 
 def get_name_by_id(id):
@@ -140,17 +119,6 @@ def get_name_by_id(id):
 
 
 def get_name_by_id_from_table(table, id):
-
-    """
-    Returns the name (str) of the customer with the given id (str) on None om case of non-existing id.
-
-    Args:
-        table (list of lists): the customer table
-        id (str): the id of the customer
-
-    Returns:
-        str the name of the customer
-    """
     for i in range(len(table)):
         if id == table[i][0]:
             return table[i][1]

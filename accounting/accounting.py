@@ -1,11 +1,3 @@
-# data structure:
-# id: string
-#     Unique and randomly generated (at least 2 special char()expect: ';'), 2 number, 2 lower and 2 upper case letter)
-# month: number
-# day: number
-# year: number
-# type: string (in = income, out = outcome)
-# amount: number (dollar)
 import os
 import ui
 import data_manager
@@ -74,11 +66,6 @@ def write_to_file(table):
     return common.common_write_to_file(table, "accounting/items.csv")
 
 
-# special functions:
-# ------------------
-
-# the question: Which year has the highest profit? (profit=in-out)
-# return the answer (number)
 def which_year_max(table):
     counter_one = 0
     counter_two = 0
@@ -104,8 +91,6 @@ def which_year_max(table):
         return int(years[1])
 
 
-# the question: What is the average (per item) profit in a given year? [(profit)/(items count) ]
-# return the answer (number)
 def avg_amount(table, year):
     counter = 0
     profit_changes = []

@@ -1,7 +1,3 @@
-# Do not modify this file
-# run this program (the ERP software) from the terminal from thd root directory of this project
-
-
 import sys
 import os
 import ui  # User Interface

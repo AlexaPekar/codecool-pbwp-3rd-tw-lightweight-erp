@@ -1,8 +1,3 @@
-# data structure:
-# id: string
-#     Unique and random generated (at least 2 special char()expect: ';'), 2 number, 2 lower and 2 upper case letter)
-# name: string
-# birth_date: number (year)
 import os
 import ui
 import data_manager
@@ -68,12 +63,6 @@ def update(table, id_):
 def write_to_file(table):
     return common.common_write_to_file(table, "hr/persons.csv")
 
-# special functions:
-# ------------------
-
-# the question: Who is the oldest person ?
-# return type: list of strings (name or names if there are two more with the same value)
-
 
 def get_oldest_person(table):
 
@@ -89,9 +78,6 @@ def get_oldest_person(table):
         if str(oldest) in line:
             oldest_persons.append(line[1])
     return oldest_persons
-
-# the question: Who is the closest to the average age ?
-# return type: list of strings (name or names if there are two more with the same value)
 
 
 def get_persons_closest_to_average(table):

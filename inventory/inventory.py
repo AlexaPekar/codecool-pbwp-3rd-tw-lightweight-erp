@@ -1,10 +1,3 @@
-# data structure:
-# id: string
-#     Unique and random generated (at least 2 special char()expect: ';'), 2 number, 2 lower and 2 upper case letter)
-# name: string
-# manufacturer: string
-# purchase_date: number (year)
-# durability: number (year)
 import os
 import ui
 import data_manager
@@ -72,13 +65,6 @@ def write_to_file(table):
     return common.common_write_to_file(table, "inventory/inventory.csv")
 
 
-# special functions:
-# ------------------
-
-# the question: Which items have not exceeded their durability yet?
-# return type: list of lists (the inner list contains the whole row with their actual data types)
-#
-# @table: list of lists
 def get_available_items(table):
     available_items = []
     for i in range(len(table)):
@@ -87,11 +73,6 @@ def get_available_items(table):
             table[i][4] = int(table[i][4])
             available_items.append(table[i])
     return available_items
-
-# the question: What are the average durability times for each manufacturer?
-# return type: a dictionary with this structure: { [manufacturer] : [avg] }
-#
-# @table: list of lists
 
 
 def get_average_durability_by_manufacturers(table):
