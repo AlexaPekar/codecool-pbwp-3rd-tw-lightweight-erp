@@ -29,22 +29,30 @@ def start_module():
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
         if option == "1":
+            os.system("clear")
             ui.print_result(get_the_last_buyer_name(), "Name of the last buyer:")
         elif option == "2":
+            os.system("clear")
             ui.print_result(get_the_last_buyer_id(), "ID of the last buyer:")
         elif option == "3":
+            os.system("clear")
             ui.print_result(get_the_buyer_name_spent_most_and_the_money_spent(), "Name of the buyer spent the most and the amount of money spent:")
         elif option == "4":
+            os.system("clear")
             ui.print_result(get_the_buyer_id_spent_most_and_the_money_spent(), "ID of the buyer spent the most and the amount of money spent:")
         elif option == "5":
+            os.system("clear")
             number_of_buyers = ui.get_inputs(["Please enter the number of buyers to display: "], "")
             ui.print_result(get_the_most_frequent_buyers_names(int(number_of_buyers[0])), "Name(s) of the most frequent buyer(s):")
         elif option == "6":
+            os.system("clear")
             number_of_buyers = ui.get_inputs(["Please enter the number of buyers to display: "], "")
             ui.print_result(get_the_most_frequent_buyers_ids(int(number_of_buyers[0])), "ID(s) of the most frequent buyer(s):")
         elif option == "7":
+            os.system("clear")
             ui.print_result(no_sale_belongs_to(), "Name(s) of person(s) who did not buy anything:")
         elif option == "0":
+            os.system("clear")
             break
         else:
             ui.print_error_message("There is no such option.")

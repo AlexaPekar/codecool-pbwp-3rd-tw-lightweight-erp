@@ -17,23 +17,30 @@ def start_module():
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
         if option == "1":
+            os.system("clear")
             show_table(datas)
         elif option == "2":
+            os.system("clear")
             add(datas)
             write_to_file(datas)
         elif option == "3":
+            os.system("clear")
             given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
             remove(datas, given_id)
             write_to_file(datas)
         elif option == "4":
+            os.system("clear")
             update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
             update(datas, update_id)
             write_to_file(datas)
         elif option == "5":
+            os.system("clear")
             ui.print_result(get_oldest_person(datas), "is the result of the 1st HR extra function.")
         elif option == "6":
+            os.system("clear")
             ui.print_result(get_persons_closest_to_average(datas), "is the result of the 2nd HR extra function.")
         elif option == "0":
+            os.system("clear")
             break
         else:
             ui.print_error_message("There is no such option.")

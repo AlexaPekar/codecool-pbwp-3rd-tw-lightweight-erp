@@ -10,6 +10,7 @@ import os
 import ui
 import data_manager
 import common
+import sys
 
 
 def start_module():
@@ -20,24 +21,31 @@ def start_module():
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
         if option == "1":
+            os.system("clear")
             show_table(datas)
         elif option == "2":
+            os.system("clear")
             add(datas)
             write_to_file(datas)
         elif option == "3":
+            os.system("clear")
             given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
             remove(datas, given_id)
             write_to_file(datas)
         elif option == "4":
+            os.system("clear")
             update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
             update(datas, update_id)
             write_to_file(datas)
         elif option == "5":
+            os.system("clear")
             ui.print_result(which_year_max(datas), "is the result of 1st inventory extra function.")
         elif option == "6":
+            os.system("clear")
             year_list = ui.get_inputs(["Year: "], "Please add the year to get its average profit!")
             ui.print_result(avg_amount(datas, int(year_list[0])), "is the result of 2nd inventory extra function.")
         elif option == "0":
+            os.system("clear")
             break
         else:
             ui.print_error_message("There is no such option.")

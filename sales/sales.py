@@ -45,21 +45,27 @@ def start_module():
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
         if option == "1":
+            os.system("clear")
             show_table(datas)
         elif option == "2":
+            os.system("clear")
             add(datas)
             write_to_file(datas)
         elif option == "3":
+            os.system("clear")
             given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
             remove(datas, given_id)
             write_to_file(datas)
         elif option == "4":
+            os.system("clear")
             update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
             update(datas, update_id)
             write_to_file(datas)
         elif option == "5":
+            os.system("clear")
             ui.print_result(get_lowest_price_item_id(datas), "The ID of the item sold for the lowest price:")
         elif option == "6":
+            os.system("clear")
             date_list = ui.get_inputs(["Month from: ", "Day from: ", "Year from: ",
                                        "Month to: ", "Day to: ", "Year to: "], "Please add the dates!")
             ui.print_result(
@@ -72,44 +78,60 @@ def start_module():
                             date_list[4]), int(
                                 date_list[5])), "Items that are sold between two given dates:\n")
         elif option == "7":
+            os.system("clear")
             given_id = ui.get_inputs(["Please enter an ID to get the title: "], "")
             ui.print_result(get_title_by_id(given_id[0]), "The title of the item by ID:")
         elif option == "8":
+            os.system("clear")
             given_id = ui.get_inputs(["Please enter an ID to get the title: "], "")
             ui.print_result(get_title_by_id_from_table(datas, given_id[0]), "The title of the item by ID:")
         elif option == "9":
+            os.system("clear")
             ui.print_result(get_item_id_sold_last(), "The ID of the item sold last:")
         elif option == "10":
+            os.system("clear")
             ui.print_result(get_item_id_sold_last_from_table(datas), "The ID of the item sold last:")
         elif option == "11":
+            os.system("clear")
             ui.print_result(get_item_title_sold_last_from_table(datas), "The title of the item sold last:")
         elif option == "12":
+            os.system("clear")
             given_ids = ui.get_inputs(["Please enter the IDs (seperated by comma) to get the sum of the prices of the items: "], "")
             splitted_given_ids = given_ids[0].split(",")
             ui.print_result(get_the_sum_of_prices(splitted_given_ids), "The sum of prices of the given item IDs:")
         elif option == "13":
+            os.system("clear")
             given_ids = ui.get_inputs(["Please enter the IDs (seperated by comma) to get the sum of the prices of the items: "], "")
             splitted_given_ids = given_ids[0].split(",")
             ui.print_result(get_the_sum_of_prices_from_table(datas, splitted_given_ids), "The sum of prices of the given item IDs:")
         elif option == "14":
+            os.system("clear")
             given_id = ui.get_inputs(["Please enter the sale ID to get the customer ID: "], "")
             ui.print_result(get_customer_id_by_sale_id(given_id[0]), "The customer ID by the given sale ID:")
         elif option == "15":
+            os.system("clear")
             given_id = ui.get_inputs(["Please enter the sale ID to get the customer ID: "], "")
             ui.print_result(get_customer_id_by_sale_id_from_table(datas, given_id[0]), "The customer ID by the given sale ID:")
         elif option == "16":
+            os.system("clear")
             ui.print_result(get_all_customer_ids(), "All customer IDs:")
         elif option == "17":
+            os.system("clear")
             ui.print_result(get_all_customer_ids_from_table(datas), "All customer IDs:")
         elif option == "18":
+            os.system("clear")
             ui.print_result(get_all_sales_ids_for_customer_ids(), "All sale IDs for the customer IDs:")
         elif option == "19":
+            os.system("clear")
             ui.print_result(get_all_sales_ids_for_customer_ids_from_table(datas), "All sale IDs for the customer IDs:")
         elif option == "20":
+            os.system("clear")
             ui.print_result(get_num_of_sales_per_customer_ids(), "The number of sales per customer IDs:")
         elif option == "21":
+            os.system("clear")
             ui.print_result(get_num_of_sales_per_customer_ids_from_table(datas), "The number of sales per customer IDs:")
         elif option == "0":
+            os.system("clear")
             break
         else:
             ui.print_error_message("There is no such option.")
