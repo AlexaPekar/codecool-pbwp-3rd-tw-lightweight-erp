@@ -24,7 +24,7 @@ def start_module():
         None
     """
     while True:
-        options = ["Get the last buyer name", "Get the last buyer ID", "Get the buyer's name spent the most and the amount of money spent", "Get the buyer's ID spent the most and the amount of money spent", "Get the most frequent buyers' names", "Get the most frequent buyers' IDs"]
+        options = ["Get the last buyer name", "Get the last buyer ID", "Get the buyer's name spent the most and the amount of money spent", "Get the buyer's ID spent the most and the amount of money spent", "Get the most frequent buyers' names", "Get the most frequent buyers' IDs", "Get the name of the customers who did not buy anything"]
         ui.print_menu("\nData analyser menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
@@ -42,6 +42,8 @@ def start_module():
         elif option == "6":
             number_of_buyers = ui.get_inputs(["Please enter the number of buyers to display: "], "")
             ui.print_result(get_the_most_frequent_buyers_ids(int(number_of_buyers[0])), "ID(s) of the most frequent buyer(s):")
+        elif option == "7":
+            ui.print_result(no_sale_belongs_to(), "Name(s) of person(s) who did not buy anything:")
         elif option == "0":
             break
         else:
@@ -157,3 +159,27 @@ def get_the_most_frequent_buyers_ids(num=1):
     for i in range(0, num):
         result.append(all_customers[i])
     return result
+
+
+def no_sale_belongs_to():
+    get_all_sales_for_customer = sales.get_all_sales_ids_for_customer_ids()
+    content_of_table = common.get_crm_table()
+    have_bought = True
+    list_of_buyers_ids = []
+    not_buyers_id = []
+    not_buyers = []
+    for key, value in get_all_sales_for_customer.items():
+        if get_all_sales_for_customer[key] != []:
+            have_bought = True
+            list_of_buyers_ids.append(key)
+        else:
+            have_bought = False
+            not_buyers.append(key)
+
+    for i in range(len(content_of_table)):
+        if content_of_table[i][0] not in list_of_buyers_ids:
+            not_buyers_id.append(content_of_table[i][0])
+    for id in not_buyers_id:
+        not_buyers.append(crm.get_name_by_id(id))
+    return not_buyers
+

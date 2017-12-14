@@ -91,3 +91,8 @@ def common_remove(table, id_, file_name):
 
 def common_write_to_file(table, file_name):
     return data_manager.write_table_to_file(file_name, table)
+
+
+def get_crm_table():
+    table = data_manager.get_table_from_file("crm/customers.csv")
+    return table
