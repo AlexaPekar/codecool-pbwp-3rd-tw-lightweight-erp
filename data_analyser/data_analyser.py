@@ -24,23 +24,24 @@ def start_module():
         None
     """
     while True:
-        datas = data_manager.get_table_from_file("inventory/inventory.csv")
         options = ["Get the last buyer name", "Get the last buyer ID", "Get the buyer's name spent the most and the amount of money spent", "Get the buyer's ID spent the most and the amount of money spent", "Get the most frequent buyers' names", "Get the most frequent buyers' IDs"]
         ui.print_menu("\nData analyser menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
         if option == "1":
-            print(get_the_last_buyer_name())
+            ui.print_result(get_the_last_buyer_name(), "Name of the last buyer:")
         elif option == "2":
-            print(get_the_last_buyer_id())
+            ui.print_result(get_the_last_buyer_id(), "ID of the last buyer:")
         elif option == "3":
-            print(get_the_buyer_name_spent_most_and_the_money_spent())
+            ui.print_result(get_the_buyer_name_spent_most_and_the_money_spent(), "Name of the buyer spent the most and the amount of money spent:")
         elif option == "4":
-            print(get_the_buyer_id_spent_most_and_the_money_spent())
+            ui.print_result(get_the_buyer_id_spent_most_and_the_money_spent(), "ID of the buyer spent the most and the amount of money spent:")
         elif option == "5":
-            print(get_the_most_frequent_buyers_names(num=1))
+            number_of_buyers = ui.get_inputs(["Please enter the number of buyers to display: "], "")
+            ui.print_result(get_the_most_frequent_buyers_names(int(number_of_buyers[0])), "Name(s) of the most frequent buyer(s):")
         elif option == "6":
-            print(get_the_most_frequent_buyers_ids(num=1))
+            number_of_buyers = ui.get_inputs(["Please enter the number of buyers to display: "], "")
+            ui.print_result(get_the_most_frequent_buyers_ids(int(number_of_buyers[0])), "ID(s) of the most frequent buyer(s):")
         elif option == "0":
             break
         else:

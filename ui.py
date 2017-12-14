@@ -19,7 +19,7 @@ def print_table(table, title_list):
 
 
 def print_result(result, label):
-    print(result, label)
+    print(label, result)
 
 
 def print_menu(title, list_options, exit_message):
