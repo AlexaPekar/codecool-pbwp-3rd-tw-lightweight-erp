@@ -84,14 +84,20 @@ def start_module():
             ui.print_result(get_item_title_sold_last_from_table(datas), "The title of the item sold last:")
         elif option == "12":
             os.system("clear")
-            given_ids = ui.get_inputs(["Please, enter the IDs (seperated by comma) to get the sum of the prices of the items: "], "")
+            given_ids = ui.get_inputs(
+                ["Please, enter the IDs (seperated by comma) to get the sum of the prices of the items: "], "")
             splitted_given_ids = given_ids[0].split(",")
             ui.print_result(get_the_sum_of_prices(splitted_given_ids), "The sum of prices of the given item IDs:")
         elif option == "13":
             os.system("clear")
-            given_ids = ui.get_inputs(["Please, enter the IDs (seperated by comma) to get the sum of the prices of the items: "], "")
+            given_ids = ui.get_inputs(
+                ["Please, enter the IDs (seperated by comma) to get the sum of the prices of the items: "], "")
             splitted_given_ids = given_ids[0].split(",")
-            ui.print_result(get_the_sum_of_prices_from_table(datas, splitted_given_ids), "The sum of prices of the given item IDs:")
+            ui.print_result(
+                get_the_sum_of_prices_from_table(
+                    datas,
+                    splitted_given_ids),
+                "The sum of prices of the given item IDs:")
         elif option == "14":
             os.system("clear")
             given_id = ui.get_inputs(["Please, enter the sale ID to get the customer ID: "], "")
@@ -99,7 +105,11 @@ def start_module():
         elif option == "15":
             os.system("clear")
             given_id = ui.get_inputs(["Please, enter the sale ID to get the customer ID: "], "")
-            ui.print_result(get_customer_id_by_sale_id_from_table(datas, given_id[0]), "The customer ID by the given sale ID:")
+            ui.print_result(
+                get_customer_id_by_sale_id_from_table(
+                    datas,
+                    given_id[0]),
+                "The customer ID by the given sale ID:")
         elif option == "16":
             os.system("clear")
             ui.print_result(get_all_customer_ids(), "All customer IDs:")
@@ -117,7 +127,9 @@ def start_module():
             ui.print_result(get_num_of_sales_per_customer_ids(), "The number of sales per customer IDs:")
         elif option == "21":
             os.system("clear")
-            ui.print_result(get_num_of_sales_per_customer_ids_from_table(datas), "The number of sales per customer IDs:")
+            ui.print_result(
+                get_num_of_sales_per_customer_ids_from_table(datas),
+                "The number of sales per customer IDs:")
         elif option == "0":
             os.system("clear")
             break
@@ -205,8 +217,8 @@ def get_title_by_id(id):
 def get_title_by_id_from_table(table, id):
 
     for i in range(len(table)):
-            if table[i][0] == id:
-                return table[i][1]
+        if table[i][0] == id:
+            return table[i][1]
 
 
 def get_item_id_sold_last():

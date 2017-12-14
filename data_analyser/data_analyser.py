@@ -7,7 +7,17 @@ from crm import crm
 
 def start_module():
     while True:
-        options = ["Get the last buyer name", "Get the last buyer ID", "Get the buyer's name spent the most and the amount of money spent", "Get the buyer's ID spent the most and the amount of money spent", "Get the most frequent buyers' names", "Get the most frequent buyers' IDs", "Get the name of the customers who did not buy anything","Get all subscribed people's name and e-mail adress","Get all subscribed buyers's e-mail adress and name","Get all subscribed buyers's e-mail adress and the title of the purchased games"]
+        options = [
+            "Get the last buyer name",
+            "Get the last buyer ID",
+            "Get the buyer's name spent the most and the amount of money spent",
+            "Get the buyer's ID spent the most and the amount of money spent",
+            "Get the most frequent buyers' names",
+            "Get the most frequent buyers' IDs",
+            "Get the name of the customers who did not buy anything",
+            "Get all subscribed people's name and e-mail adress",
+            "Get all subscribed buyers's e-mail adress and name",
+            "Get all subscribed buyers's e-mail adress and the title of the purchased games"]
         ui.print_menu("\nData analyser menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
@@ -19,30 +29,37 @@ def start_module():
             ui.print_result(get_the_last_buyer_id(), "ID of the last buyer:")
         elif option == "3":
             os.system("clear")
-            ui.print_result(get_the_buyer_name_spent_most_and_the_money_spent(), "Name of the buyer spent the most and the amount of money spent:")
+            ui.print_result(get_the_buyer_name_spent_most_and_the_money_spent(),
+                            "Name of the buyer spent the most and the amount of money spent:")
         elif option == "4":
             os.system("clear")
-            ui.print_result(get_the_buyer_id_spent_most_and_the_money_spent(), "ID of the buyer spent the most and the amount of money spent:")
+            ui.print_result(get_the_buyer_id_spent_most_and_the_money_spent(),
+                            "ID of the buyer spent the most and the amount of money spent:")
         elif option == "5":
             os.system("clear")
             number_of_buyers = ui.get_inputs(["Please, enter the number of buyers to display: "], "")
-            ui.print_result(get_the_most_frequent_buyers_names(int(number_of_buyers[0])), "Name(s) of the most frequent buyer(s):")
+            ui.print_result(get_the_most_frequent_buyers_names(
+                int(number_of_buyers[0])), "Name(s) of the most frequent buyer(s):")
         elif option == "6":
             os.system("clear")
             number_of_buyers = ui.get_inputs(["Please, enter the number of buyers to display: "], "")
-            ui.print_result(get_the_most_frequent_buyers_ids(int(number_of_buyers[0])), "ID(s) of the most frequent buyer(s):")
+            ui.print_result(get_the_most_frequent_buyers_ids(
+                int(number_of_buyers[0])), "ID(s) of the most frequent buyer(s):")
         elif option == "7":
             os.system("clear")
             ui.print_result(get_names_no_sale_belongs_to(), "The name(s) of person(s) who did not buy anything:\n")
         elif option == "8":
             os.system("clear")
-            ui.print_result(get_all_subscribed_people(), "The name(s) and e-mail adress(es) of the subscribed people:\n")
+            ui.print_result(get_all_subscribed_people(),
+                            "The name(s) and e-mail adress(es) of the subscribed people:\n")
         elif option == "9":
             os.system("clear")
-            ui.print_result(get_all_subscribed_buyers_names(), "The e-mail adress(es) and names of the subscribed buyers:\n")
+            ui.print_result(get_all_subscribed_buyers_names(),
+                            "The e-mail adress(es) and names of the subscribed buyers:\n")
         elif option == "10":
             os.system("clear")
-            ui.print_result(get_all_subscribed_buyers_games(), "The e-mail adress(es) and the title of the purchased games of the subscribed buyers:\n")
+            ui.print_result(get_all_subscribed_buyers_games(),
+                            "The e-mail adress(es) and the title of the purchased games of the subscribed buyers:\n")
         elif option == "0":
             os.system("clear")
             break
@@ -60,7 +77,7 @@ def get_the_last_buyer_id():
     sale_id = sales.get_item_id_sold_last()
     customer_id = sales.get_customer_id_by_sale_id(sale_id)
     return customer_id
-        
+
 
 def get_the_buyer_name_spent_most_and_the_money_spent():
     result_tuple = get_the_buyer_id_spent_most_and_the_money_spent()
@@ -68,7 +85,7 @@ def get_the_buyer_name_spent_most_and_the_money_spent():
     result_list = list(result_tuple)
     result_list[0] = name
     return tuple(result_list)
-    
+
 
 def get_the_buyer_id_spent_most_and_the_money_spent():
     result = []
@@ -167,6 +184,7 @@ def get_all_subscribed_buyers_names():
                     subscribed_customers.append(tuple([line[2], line[1]]))
     return subscribed_customers
 
+
 def get_all_subscribed_buyers_games():
     emails = []
     customer_ids = []
@@ -184,7 +202,7 @@ def get_all_subscribed_buyers_games():
                 customer_ids.append(line[0])
     for id_ in customer_ids:
         for line in sales_table:
-            ids_games.append([id_,line[1]])
+            ids_games.append([id_, line[1]])
     for id_ in customer_ids:
         result.append([id_])
     for item in result:
@@ -200,7 +218,3 @@ def get_all_subscribed_buyers_games():
     for item in result:
         result_with_tuple.append(tuple(item))
     return result_with_tuple
-
-
-
-

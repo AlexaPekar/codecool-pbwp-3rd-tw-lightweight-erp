@@ -33,7 +33,8 @@ def start_module():
             ui.print_result(get_oldest_person(datas), "The name of the oldest person/people:")
         elif option == "6":
             os.system("clear")
-            ui.print_result(get_persons_closest_to_average(datas), "The name of the closest person/people to the avarage age:")
+            ui.print_result(get_persons_closest_to_average(datas),
+                            "The name of the closest person/people to the avarage age:")
         elif option == "0":
             os.system("clear")
             break

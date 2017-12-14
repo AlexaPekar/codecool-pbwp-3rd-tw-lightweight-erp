@@ -61,7 +61,7 @@ def ascii_result(result):
 
 
 def random_word():
-    random_num = random.randint(0, len(words)-1)
+    random_num = random.randint(0, len(words) - 1)
     random_word = words[random_num]
     return random_word
 
@@ -106,7 +106,7 @@ def hangman_graphic(missed_tries):
         "|           \n",
         "|           \n",
         "|             "
-        ]
+    ]
 
     if missed_tries == 0:
         print("".join(graphic))
@@ -201,6 +201,7 @@ def listing_triedletters(list_hideword, list_word_ch, list_input_letters, used_l
             hangman_graphic(missed_tries)
         else:
             print("Only alphabetic characters please!")
+
 
 words = []
 read_file("relaxation/words.txt", words)

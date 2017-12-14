@@ -17,7 +17,6 @@ def print_table(table, title_list):
             print(" | " + cell.center(width) + " | ", end='')
 
 
-
 def print_result(result, label):
     print(label, result)
 

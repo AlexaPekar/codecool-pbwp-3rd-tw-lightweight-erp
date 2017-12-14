@@ -7,7 +7,15 @@ import common
 def start_module():
     while True:
         datas = data_manager.get_table_from_file("crm/customers.csv")
-        options = ["Display table", "Add", "Remove", "Update", "Longest name's ID", "List of subscribed customers", "Get customer name by given ID", "Get customer name by given ID from table"]
+        options = [
+            "Display table",
+            "Add",
+            "Remove",
+            "Update",
+            "Longest name's ID",
+            "List of subscribed customers",
+            "Get customer name by given ID",
+            "Get customer name by given ID from table"]
         ui.print_menu("\nCRM Menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
@@ -122,4 +130,3 @@ def get_name_by_id_from_table(table, id):
     for i in range(len(table)):
         if id == table[i][0]:
             return table[i][1]
-
