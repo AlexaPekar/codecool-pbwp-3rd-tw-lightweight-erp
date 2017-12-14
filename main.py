@@ -15,6 +15,8 @@ from sales import sales
 from crm import crm
 # Data Analyser module
 from data_analyser import data_analyser
+# Relaxation module
+from relaxation import relaxation
 
 
 def choose():
@@ -41,6 +43,9 @@ def choose():
     elif option == "7":
         os.system("clear")
         data_analyser.start_module()
+    elif option == "8":
+        os.system("clear")
+        relaxation.start_module()
     elif option == "0":
         sys.exit(0)
     else:
@@ -54,7 +59,8 @@ def handle_menu():
                "Accounting manager",
                "Sales manager",
                "Customer Relationship Management (CRM)",
-               "Data Analyser"]
+               "Data Analyser",
+               "Relaxation"]
 
     ui.print_menu("Main menu", options, "Exit program")
 
