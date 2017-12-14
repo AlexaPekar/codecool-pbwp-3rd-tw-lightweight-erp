@@ -122,3 +122,38 @@ def get_names_no_sale_belongs_to():
         not_buyers.append(crm.get_name_by_id(id))
     return not_buyers
 
+
+def get_all_subscribed_people():
+    subscribed_emails = []
+    subscribed_people = []
+    content = common.get_crm_table()
+    for line in content:
+        if line[3] == "1":
+            subscribed_emails.append(line[2])
+    for line in content:
+        if line[2] in subscribed_emails:
+            subscribed_people.append(tuple([line[1], line[2]]))
+    return subscribed_people
+
+
+def get_all_subscribed_buyers():
+    people_ids = []
+    customer_ids = []
+    subscribed_customers = []
+    subscribed_people = get_all_subscribed_people()
+    sales_table = common.get_sales_table()
+    crm_table = common.get_crm_table()
+    for item in subscribed_people:
+        for line in crm_table:
+            if item[0] in line:
+                people_ids.append(line[0])
+    for id_ in people_ids:
+        for line in sales_table:
+            if id_ == line[6]:
+                customer_ids.append(id_)
+    for id_ in customer_ids:
+        for line in crm_table:
+            if id_ in line:
+                if tuple([line[1], line[2]]) not in subscribed_customers:
+                    subscribed_customers.append(tuple([line[1], line[2]]))
+    return subscribed_customers

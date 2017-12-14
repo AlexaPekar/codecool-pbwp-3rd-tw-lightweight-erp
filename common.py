@@ -86,3 +86,8 @@ def common_write_to_file(table, file_name):
 def get_crm_table():
     table = data_manager.get_table_from_file("crm/customers.csv")
     return table
+
+
+def get_sales_table():
+    table = data_manager.get_table_from_file("sales/sales.csv")
+    return table
