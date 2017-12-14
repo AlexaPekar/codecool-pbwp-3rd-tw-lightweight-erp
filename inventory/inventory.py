@@ -27,21 +27,21 @@ def start_module():
             write_to_file(datas)
         elif option == "3":
             os.system("clear")
-            given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
+            given_id = ui.get_inputs(["Please, enter an ID to remove the line: "], "")
             remove(datas, given_id)
             write_to_file(datas)
         elif option == "4":
             os.system("clear")
-            update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
+            update_id = ui.get_inputs(["Please, enter an ID to update the line: "], "")
             update(datas, update_id)
             write_to_file(datas)
         elif option == "5":
             os.system("clear")
-            ui.print_result(get_available_items(datas), "is the result of 1st inventory extra function.")
+            ui.print_result(get_available_items(datas), "The available  items:")
         elif option == "6":
             os.system("clear")
             ui.print_result(get_average_durability_by_manufacturers(datas),
-                            "is the result of 2nd inventory extra function.")
+                            "The average durability by manufacturers:")
         elif option == "0":
             os.system("clear")
             break

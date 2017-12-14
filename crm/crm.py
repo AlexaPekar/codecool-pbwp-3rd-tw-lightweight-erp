@@ -13,7 +13,7 @@ import common
 def start_module():
     while True:
         datas = data_manager.get_table_from_file("crm/customers.csv")
-        options = ["Display table", "Add", "Remove", "Update", "Longest name's ID", "List of subscribed customers"]
+        options = ["Display table", "Add", "Remove", "Update", "Longest name's ID", "List of subscribed customers", "Get customer name by given ID", "Get customer name by given ID from table"]
         ui.print_menu("\nCRM Menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
         option = inputs[0]
@@ -26,20 +26,28 @@ def start_module():
             write_to_file(datas)
         elif option == "3":
             os.system("clear")
-            given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
+            given_id = ui.get_inputs(["Please, enter an ID to remove the line: "], "")
             remove(datas, given_id)
             write_to_file(datas)
         elif option == "4":
             os.system("clear")
-            update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
+            update_id = ui.get_inputs(["Please, enter an ID to update the line: "], "")
             update(datas, update_id)
             write_to_file(datas)
         elif option == "5":
             os.system("clear")
-            ui.print_result(get_longest_name_id(datas), "is the result of the 1st CRM extra function")
+            ui.print_result(get_longest_name_id(datas), "The ID of the longest name:")
         elif option == "6":
             os.system("clear")
-            ui.print_result(get_subscribed_emails(datas), "\nis the result of the 2nd CRM extra function")
+            ui.print_result(get_subscribed_emails(datas), "The subscribed customers:\n")
+        elif option == "7":
+            os.system("clear")
+            given_id = ui.get_inputs(["Please, enter an ID to get the title: "], "")
+            ui.print_result(get_name_by_id(given_id[0]), "Customer name by ID:")
+        elif option == "8":
+            os.system("clear")
+            given_id = ui.get_inputs(["Please, enter an ID to get the title: "], "")
+            ui.print_result(get_name_by_id_from_table(datas, given_id[0]), "Customer name by ID:")
         elif option == "0":
             os.system("clear")
             break
@@ -127,10 +135,8 @@ def get_subscribed_emails(table):
 
 
 def get_name_by_id(id):
-    table = data_manager.get_table_from_file("crm/customers.csv")
-    for i in range(len(table)):
-        if id == table[i][0]:
-            return table[i][1]
+    datas = data_manager.get_table_from_file("crm/customers.csv")
+    return get_name_by_id_from_table(datas, id)
 
 
 def get_name_by_id_from_table(table, id):

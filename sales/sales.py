@@ -53,12 +53,12 @@ def start_module():
             write_to_file(datas)
         elif option == "3":
             os.system("clear")
-            given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
+            given_id = ui.get_inputs(["Please, enter an ID to remove the line: "], "")
             remove(datas, given_id)
             write_to_file(datas)
         elif option == "4":
             os.system("clear")
-            update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
+            update_id = ui.get_inputs(["Please, enter an ID to update the line: "], "")
             update(datas, update_id)
             write_to_file(datas)
         elif option == "5":
@@ -67,7 +67,7 @@ def start_module():
         elif option == "6":
             os.system("clear")
             date_list = ui.get_inputs(["Month from: ", "Day from: ", "Year from: ",
-                                       "Month to: ", "Day to: ", "Year to: "], "Please add the dates!")
+                                       "Month to: ", "Day to: ", "Year to: "], "Please, add the dates!")
             ui.print_result(
                 get_items_sold_between(
                     datas, int(
@@ -79,11 +79,11 @@ def start_module():
                                 date_list[5])), "Items that are sold between two given dates:\n")
         elif option == "7":
             os.system("clear")
-            given_id = ui.get_inputs(["Please enter an ID to get the title: "], "")
+            given_id = ui.get_inputs(["Please, enter an ID to get the title: "], "")
             ui.print_result(get_title_by_id(given_id[0]), "The title of the item by ID:")
         elif option == "8":
             os.system("clear")
-            given_id = ui.get_inputs(["Please enter an ID to get the title: "], "")
+            given_id = ui.get_inputs(["Please, enter an ID to get the title: "], "")
             ui.print_result(get_title_by_id_from_table(datas, given_id[0]), "The title of the item by ID:")
         elif option == "9":
             os.system("clear")
@@ -96,21 +96,21 @@ def start_module():
             ui.print_result(get_item_title_sold_last_from_table(datas), "The title of the item sold last:")
         elif option == "12":
             os.system("clear")
-            given_ids = ui.get_inputs(["Please enter the IDs (seperated by comma) to get the sum of the prices of the items: "], "")
+            given_ids = ui.get_inputs(["Please, enter the IDs (seperated by comma) to get the sum of the prices of the items: "], "")
             splitted_given_ids = given_ids[0].split(",")
             ui.print_result(get_the_sum_of_prices(splitted_given_ids), "The sum of prices of the given item IDs:")
         elif option == "13":
             os.system("clear")
-            given_ids = ui.get_inputs(["Please enter the IDs (seperated by comma) to get the sum of the prices of the items: "], "")
+            given_ids = ui.get_inputs(["Please, enter the IDs (seperated by comma) to get the sum of the prices of the items: "], "")
             splitted_given_ids = given_ids[0].split(",")
             ui.print_result(get_the_sum_of_prices_from_table(datas, splitted_given_ids), "The sum of prices of the given item IDs:")
         elif option == "14":
             os.system("clear")
-            given_id = ui.get_inputs(["Please enter the sale ID to get the customer ID: "], "")
+            given_id = ui.get_inputs(["Please, enter the sale ID to get the customer ID: "], "")
             ui.print_result(get_customer_id_by_sale_id(given_id[0]), "The customer ID by the given sale ID:")
         elif option == "15":
             os.system("clear")
-            given_id = ui.get_inputs(["Please enter the sale ID to get the customer ID: "], "")
+            given_id = ui.get_inputs(["Please, enter the sale ID to get the customer ID: "], "")
             ui.print_result(get_customer_id_by_sale_id_from_table(datas, given_id[0]), "The customer ID by the given sale ID:")
         elif option == "16":
             os.system("clear")

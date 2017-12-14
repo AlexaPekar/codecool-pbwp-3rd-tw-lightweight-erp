@@ -19,7 +19,7 @@ def start_module():
             "Add",
             "Remove",
             "Update",
-            "Available games by manufacturer",
+            "Available games of each manufacturer",
             "Average amount of games by manufacturer"]
         ui.print_menu("\nStore menu", options, "Main menu")
         inputs = ui.get_inputs(["Please, choose an option: "], "")
@@ -33,25 +33,25 @@ def start_module():
             write_to_file(datas)
         elif option == "3":
             os.system("clear")
-            given_id = ui.get_inputs(["Please enter an ID to remove the line: "], "")
+            given_id = ui.get_inputs(["Please, enter an ID to remove the line: "], "")
             remove(datas, given_id)
             write_to_file(datas)
         elif option == "4":
             os.system("clear")
-            update_id = ui.get_inputs(["Please enter an ID to update the line: "], "")
+            update_id = ui.get_inputs(["Please, enter an ID to update the line: "], "")
             update(datas, update_id)
             write_to_file(datas)
         elif option == "5":
             os.system("clear")
-            ui.print_result(get_counts_by_manufacturers(datas), "is the result of the 1st store extra function.")
+            ui.print_result(get_counts_by_manufacturers(datas), "The available games of each manufacturer:")
         elif option == "6":
             os.system("clear")
-            manufacturer = ui.get_inputs(["Please choose a manufacturer to get the average amount of games: "], "")
+            manufacturer = ui.get_inputs(["Please, choose a manufacturer to get the average amount of games: "], "")
             ui.print_result(
                 get_average_by_manufacturer(
                     datas,
                     manufacturer[0]),
-                "is the result of the 2nd store extra function.")
+                "The average amount of games by manufacturer:")
         elif option == "0":
             os.system("clear")
             break
