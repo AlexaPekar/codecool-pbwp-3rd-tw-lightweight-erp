@@ -44,11 +44,11 @@ def start_module():
             ui.print_result(get_subscribed_emails(datas), "The subscribed customers:\n")
         elif option == "7":
             os.system("clear")
-            given_id = ui.get_inputs(["Please, enter an ID to get the title: "], "")
+            given_id = ui.get_inputs(["Please, enter an ID to get the name: "], "")
             ui.print_result(get_name_by_id(given_id[0]), "Customer name by ID:")
         elif option == "8":
             os.system("clear")
-            given_id = ui.get_inputs(["Please, enter an ID to get the title: "], "")
+            given_id = ui.get_inputs(["Please, enter an ID to get the name: "], "")
             ui.print_result(get_name_by_id_from_table(datas, given_id[0]), "Customer name by ID:")
         elif option == "0":
             os.system("clear")

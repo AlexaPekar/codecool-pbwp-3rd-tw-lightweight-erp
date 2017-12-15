@@ -143,7 +143,7 @@ def show_table(table):
 
 
 def add(table):
-    module_headers = ["Title: ", "Price: ", "Month: ", "Day: ", "Year: "]
+    module_headers = ["Title: ", "Price: ", "Month: ", "Day: ", "Year: ", "Customer ID: "]
     return common.common_add(table, module_headers)
 
 
@@ -156,7 +156,7 @@ def remove(table, id_):
 
 
 def update(table, id_):
-    module_headers = ["Title: ", "Price: ", "Month: ", "Day: ", "Year: "]
+    module_headers = ["Title: ", "Price: ", "Month: ", "Day: ", "Year: ", "Customer ID: "]
     return common.common_update(table, id_, "sales/sales.csv", module_headers)
 
 
